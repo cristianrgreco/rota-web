@@ -69,8 +69,8 @@ function RotaEmployeeSchedule({ employee }) {
       <RotaCell header wide>{employee.name}</RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
-          <RotaEmployeeSchedulePeriod schedule={am} />
-          <RotaEmployeeSchedulePeriod schedule={pm} />
+          <RotaEmployeeSchedulePeriod period={am} />
+          <RotaEmployeeSchedulePeriod period={pm} />
         </Fragment>
       ))}
       <RotaCell/>
@@ -78,7 +78,7 @@ function RotaEmployeeSchedule({ employee }) {
   );
 }
 
-function RotaEmployeeSchedulePeriod({ schedule: period }) {
+function RotaEmployeeSchedulePeriod({ period }) {
   if (period) {
     const start = period.start > 12 ? period.start - 12: period.start;
     const end = period.end > 12 ? period.end - 12 : period.end;
