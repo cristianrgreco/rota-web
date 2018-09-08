@@ -38,12 +38,12 @@ const employees = [
   }
 ]
 
-export default function App () {
+export default function Rota () {
   return (
     <div className="Rota">
       <RotaHeader name="Kitchen" weekDays={weekDays} />
-      {employees.map(employee => (
-        <RotaEmployee employee={employee} />
+      {employees.map((employee, i) => (
+        <RotaEmployee key={i} employee={employee} />
       ))}
     </div>
   )
@@ -54,24 +54,24 @@ function RotaHeader({ name, weekDays }) {
     <Fragment>
       <div className="Rota-row header">
         <div className="Rota-cell wide">{name}</div>
-        {weekDays.map(weekDay => (
-          <div className="Rota-cell wide">{weekDay.name}</div>
+        {weekDays.map((weekDay, i) => (
+          <div key={i} className="Rota-cell wide">{weekDay.name}</div>
         ))}
         <div className="Rota-cell">Total</div>
       </div>
 
       <div className="Rota-row header">
         <div className="Rota-cell wide">Rota</div>
-        {weekDays.map(weekDay => (
-          <div className="Rota-cell wide">{weekDay.date}</div>
+        {weekDays.map((weekDay, i) => (
+          <div key={i} className="Rota-cell wide">{weekDay.date}</div>
         ))}
         <div className="Rota-cell">Hours</div>
       </div>
 
       <div className="Rota-row header invert">
         <div className="Rota-cell wide"/>
-        {weekDays.map(() => (
-          <Fragment>
+        {weekDays.map((_, i) => (
+          <Fragment key={i}>
             <div className="Rota-cell">AM</div>
             <div className="Rota-cell">PM</div>
           </Fragment>
@@ -95,8 +95,8 @@ function RotaEmployeeSchedule({ employee }) {
   return (
     <div className="Rota-row">
       <div className="Rota-cell header wide">{employee.name}</div>
-      {employee.schedule.map(({ am, pm }) => (
-        <Fragment>
+      {employee.schedule.map(({ am, pm }, i) => (
+        <Fragment key={i}>
           <RotaEmployeeSchedulePeriod schedule={am} />
           <RotaEmployeeSchedulePeriod schedule={pm} />
         </Fragment>
@@ -131,8 +131,8 @@ function RotaEmployeeHours({ employee }) {
   return (
     <div className="Rota-row">
       <div className="Rota-cell wide">Hours</div>
-      {employee.schedule.map(({ am, pm }) => (
-        <Fragment>
+      {employee.schedule.map(({ am, pm }, i) => (
+        <Fragment key={i}>
           <RotaEmployeeHoursPeriod period={am} />
           <RotaEmployeeHoursPeriod period={pm} />
         </Fragment>
