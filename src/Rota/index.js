@@ -55,30 +55,23 @@ function RotaHeader({ name, week }) {
 }
 
 function RotaEmployee({ employee }) {
-  return (
-    <Fragment>
-      <RotaEmployeeSchedule employee={employee} />
-      <RotaEmployeeHours employee={employee} />
-    </Fragment>
-  )
-}
+  const totalHours = calculateTotalHours(employee.schedule);
 
-function RotaEmployeeSchedule({ employee }) {
   return (
     <RotaRow>
       <RotaCell header wide>{employee.name}</RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
-          <RotaEmployeeSchedulePeriod period={am} />
-          <RotaEmployeeSchedulePeriod period={pm} />
+          <RotaEmployeePeriod period={am} />
+          <RotaEmployeePeriod period={pm} />
         </Fragment>
       ))}
-      <RotaCell/>
+      <RotaCell>{totalHours}</RotaCell>
     </RotaRow>
   );
 }
 
-function RotaEmployeeSchedulePeriod({ period }) {
+function RotaEmployeePeriod({ period }) {
   if (period) {
     const start = period.start > 12 ? period.start - 12: period.start;
     const end = period.end > 12 ? period.end - 12 : period.end;
@@ -91,29 +84,6 @@ function RotaEmployeeSchedulePeriod({ period }) {
       <RotaCell>-</RotaCell>
     );
   }
-}
-
-function RotaEmployeeHours({ employee }) {
-  const totalHours = calculateTotalHours(employee.schedule);
-
-  return (
-    <RotaRow>
-      <RotaCell wide>Hours</RotaCell>
-      {employee.schedule.map(({ am, pm }, i) => (
-        <Fragment key={i}>
-          <RotaEmployeeHoursPeriod period={am} />
-          <RotaEmployeeHoursPeriod period={pm} />
-        </Fragment>
-      ))}
-      <RotaCell>{totalHours}</RotaCell>
-    </RotaRow>
-  );
-}
-
-function RotaEmployeeHoursPeriod({ period }) {
-  return period
-    ? <RotaCell>{period.end - period.start}</RotaCell>
-    : <RotaCell>-</RotaCell>
 }
 
 function RotaRow({ header, invert, children }) {
