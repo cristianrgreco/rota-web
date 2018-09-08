@@ -13,28 +13,28 @@ const weekDays = [
 
 const employees = [
   {
-    name: 'ADAM',
-    schedule: {
-      '13/08': { AM: null, PM: null },
-      '14/08': { AM: null, PM: null },
-      '15/08': { AM: null, PM: null },
-      '16/08': { AM: null, PM: null },
-      '17/08': { AM: null, PM: null },
-      '18/08': { AM: null, PM: null },
-      '19/08': { AM: null, PM: null },
-    }
+    name: 'Adam',
+    schedule: [
+      { am: null, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: null },
+    ]
   },
   {
-    name: 'ELLIAS',
-    schedule: {
-      '13/08': { AM: { start: 8, end: 16 }, PM: null },
-      '14/08': { AM: { start: 8, end: 16 }, PM: null },
-      '15/08': { AM: null, PM: null },
-      '16/08': { AM: null, PM: { start: 16, end: 23 } },
-      '17/08': { AM: null, PM: { start: 16, end: 23 } },
-      '18/08': { AM: null, PM: { start: 16, end: 23 } },
-      '19/08': { AM: null, PM: null },
-    }
+    name: 'Ellias',
+    schedule: [
+      { am: { start: 8, end: 16 }, pm: null },
+      { am: { start: 8, end: 16 }, pm: null },
+      { am: null, pm: null },
+      { am: null, pm: { start: 16, end: 23 } },
+      { am: null, pm: { start: 16, end: 23 } },
+      { am: null, pm: { start: 16, end: 23 } },
+      { am: null, pm: null },
+    ]
   }
 ]
 
@@ -84,26 +84,68 @@ function RotaHeader({ name, weekDays }) {
 
 function RotaEmployee({ employee }) {
   return (
-    <div className="Rota-row">
-      <div className="Rota-cell header wide">{employee.name}</div>
-      {Object.values(employee.schedule).map(({ AM, PM }) => (
-        <Fragment>
-          <RotaEmployeeSchedule schedule={AM} />
-          <RotaEmployeeSchedule schedule={PM} />
-        </Fragment>
-      ))}
-      <div className="Rota-cell">0</div>
-    </div>
+    <Fragment>
+      <RotaEmployeeSchedule employee={employee} />
+      <RotaEmployeeHours employee={employee} />
+    </Fragment>
   )
 }
 
-function RotaEmployeeSchedule({ schedule }) {
-  if (schedule) {
-    const start = schedule.start > 12 ? schedule.start - 12: schedule.start;
-    const end = schedule.end > 12 ? schedule.end - 12 : schedule.end;
+function RotaEmployeeSchedule({ employee }) {
+  return (
+    <div className="Rota-row">
+      <div className="Rota-cell header wide">{employee.name}</div>
+      {employee.schedule.map(({ am, pm }) => (
+        <Fragment>
+          <RotaEmployeeSchedulePeriod schedule={am} />
+          <RotaEmployeeSchedulePeriod schedule={pm} />
+        </Fragment>
+      ))}
+      <div className="Rota-cell"/>
+    </div>
+  );
+}
+
+function RotaEmployeeSchedulePeriod({ schedule: period }) {
+  if (period) {
+    const start = period.start > 12 ? period.start - 12: period.start;
+    const end = period.end > 12 ? period.end - 12 : period.end;
 
     return (
       <div className="Rota-cell">{start}-{end}</div>
+    );
+  } else {
+    return (
+      <div className="Rota-cell">-</div>
+    );
+  }
+}
+
+function RotaEmployeeHours({ employee }) {
+  const totalHours = employee.schedule.reduce((totalHours, { am, pm }) => {
+    const amHours = am ? am.end - am.start : 0;
+    const pmHours = pm ? pm.end - pm.start : 0;
+    return totalHours + (amHours + pmHours);
+  }, 0);
+
+  return (
+    <div className="Rota-row">
+      <div className="Rota-cell wide">Hours</div>
+      {employee.schedule.map(({ am, pm }) => (
+        <Fragment>
+          <RotaEmployeeHoursPeriod period={am} />
+          <RotaEmployeeHoursPeriod period={pm} />
+        </Fragment>
+      ))}
+      <div className="Rota-cell">{totalHours}</div>
+    </div>
+  );
+}
+
+function RotaEmployeeHoursPeriod({ period }) {
+  if (period) {
+    return (
+      <div className="Rota-cell">{period.end - period.start}</div>
     );
   } else {
     return (
