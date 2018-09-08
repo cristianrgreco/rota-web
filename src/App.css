@@ -1,0 +1,28 @@
+.Rota {
+  display: flex;
+  flex-direction: column;
+}
+
+.Rota-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.Rota-cell {
+  flex: 1;
+  border-bottom: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+}
+
+.Rota-cell.wide {
+  flex: 2;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.invert {
+  background-color: black;
+  color: white;
+}
