@@ -1,76 +1,46 @@
 import React, { Fragment } from 'react'
+import { asyncReactor } from 'async-reactor';
+import { getWeek } from './week';
 import './App.css'
+import { fetchEmployees } from './employees'
 
-const weekDays = [
-  { name: 'Monday', date: '13/08' },
-  { name: 'Tuesday', date: '14/08' },
-  { name: 'Wednesday', date: '15/08' },
-  { name: 'Thursday', date: '16/08' },
-  { name: 'Friday', date: '17/08' },
-  { name: 'Saturday', date: '18/08' },
-  { name: 'Sunday', date: '19/08' }
-];
+export default asyncReactor(async function Rota () {
+  const today = new Date(2018, 7, 18)
+  const week = getWeek(today);
+  const employees = await fetchEmployees();
 
-const employees = [
-  {
-    name: 'Adam',
-    schedule: [
-      { am: null, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: null },
-    ]
-  },
-  {
-    name: 'Ellias',
-    schedule: [
-      { am: { start: 8, end: 16 }, pm: null },
-      { am: { start: 8, end: 16 }, pm: null },
-      { am: null, pm: null },
-      { am: null, pm: { start: 16, end: 23 } },
-      { am: null, pm: { start: 16, end: 23 } },
-      { am: null, pm: { start: 16, end: 23 } },
-      { am: null, pm: null },
-    ]
-  }
-]
-
-export default function Rota () {
   return (
     <div className="Rota">
-      <RotaHeader name="Kitchen" weekDays={weekDays} />
+      <RotaHeader name="Kitchen" week={week} />
       {employees.map((employee, i) => (
         <RotaEmployee key={i} employee={employee} />
       ))}
     </div>
   )
-}
+})
 
-function RotaHeader({ name, weekDays }) {
+function RotaHeader({ name, week }) {
   return (
     <Fragment>
       <div className="Rota-row header">
         <div className="Rota-cell wide">{name}</div>
-        {weekDays.map((weekDay, i) => (
-          <div key={i} className="Rota-cell wide">{weekDay.name}</div>
+        {week.map((weekDay, i) => (
+          <div key={i} className="Rota-cell wide">{weekDay.format('ddd')}</div>
         ))}
         <div className="Rota-cell">Total</div>
       </div>
 
       <div className="Rota-row header">
         <div className="Rota-cell wide">Rota</div>
-        {weekDays.map((weekDay, i) => (
-          <div key={i} className="Rota-cell wide">{weekDay.date}</div>
+        {week.map((weekDay, i) => (
+          <div key={i} className="Rota-cell wide">{weekDay.format('DD/MM')}</div>
         ))}
         <div className="Rota-cell">Hours</div>
       </div>
 
       <div className="Rota-row header invert">
         <div className="Rota-cell wide"/>
-        {weekDays.map((_, i) => (
+        {week.map((_, i) => (
           <Fragment key={i}>
             <div className="Rota-cell">AM</div>
             <div className="Rota-cell">PM</div>
@@ -122,11 +92,7 @@ function RotaEmployeeSchedulePeriod({ schedule: period }) {
 }
 
 function RotaEmployeeHours({ employee }) {
-  const totalHours = employee.schedule.reduce((totalHours, { am, pm }) => {
-    const amHours = am ? am.end - am.start : 0;
-    const pmHours = pm ? pm.end - pm.start : 0;
-    return totalHours + (amHours + pmHours);
-  }, 0);
+  const totalHours = calculateTotalHours(employee.schedule);
 
   return (
     <div className="Rota-row">
@@ -152,4 +118,12 @@ function RotaEmployeeHoursPeriod({ period }) {
       <div className="Rota-cell">-</div>
     );
   }
+}
+
+function calculateTotalHours(schedule) {
+  return schedule.reduce((totalHours, { am, pm }) => {
+    const amHours = am ? am.end - am.start : 0;
+    const pmHours = pm ? pm.end - pm.start : 0;
+    return totalHours + (amHours + pmHours);
+  }, 0);
 }
