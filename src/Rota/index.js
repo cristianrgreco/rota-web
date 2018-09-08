@@ -6,14 +6,13 @@ import './index.css'
 import { fetchEmployees } from './employees'
 
 export default asyncReactor(async function Rota () {
-  const name = 'Kitchen';
   const today = new Date(2018, 7, 18)
   const week = getWeek(today);
   const employees = await fetchEmployees();
 
   return (
     <div className="Rota">
-      <RotaHeader name={name} week={week} />
+      <RotaHeader week={week} />
       {employees.map((employee, i) => (
         <RotaEmployee key={i} employee={employee} />
       ))}
@@ -21,34 +20,18 @@ export default asyncReactor(async function Rota () {
   )
 })
 
-function RotaHeader({ name, week }) {
+function RotaHeader({ week }) {
   return (
     <Fragment>
-      <RotaRow header>
-        <RotaCell wide>{name}</RotaCell>
-        {week.map((weekDay, i) => (
-          <RotaCell key={i} wide>{weekDay.format('ddd')}</RotaCell>
-        ))}
-        <RotaCell>Total</RotaCell>
-      </RotaRow>
-
-      <RotaRow header>
-        <RotaCell wide>Rota</RotaCell>
-        {week.map((weekDay, i) => (
-          <RotaCell key={i} wide>{weekDay.format('DD/MM')}</RotaCell>
-        ))}
-        <RotaCell>Hours</RotaCell>
-      </RotaRow>
-
       <RotaRow header invert>
         <RotaCell wide/>
-        {week.map((_, i) => (
-          <Fragment key={i}>
-            <RotaCell>AM</RotaCell>
-            <RotaCell>PM</RotaCell>
-          </Fragment>
+        {week.map((weekDay, i) => (
+          <RotaCell key={i} wide>
+            <div>{weekDay.format('ddd')}</div>
+            <div>{weekDay.format('DD/MM')}</div>
+          </RotaCell>
         ))}
-        <RotaCell/>
+        <RotaCell>Hours</RotaCell>
       </RotaRow>
     </Fragment>
   );
@@ -62,7 +45,7 @@ function RotaEmployee({ employee }) {
       <RotaCell header wide>{employee.name}</RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
-          <RotaEmployeePeriod period={am} />
+          <RotaEmployeePeriod softBorder period={am} />
           <RotaEmployeePeriod period={pm} />
         </Fragment>
       ))}
@@ -71,17 +54,17 @@ function RotaEmployee({ employee }) {
   );
 }
 
-function RotaEmployeePeriod({ period }) {
+function RotaEmployeePeriod({ period, softBorder }) {
   if (period) {
     const start = period.start > 12 ? period.start - 12: period.start;
     const end = period.end > 12 ? period.end - 12 : period.end;
 
     return (
-      <RotaCell>{start}-{end}</RotaCell>
+      <RotaCell softBorder={softBorder}>{start}-{end}</RotaCell>
     );
   } else {
     return (
-      <RotaCell>-</RotaCell>
+      <RotaCell softBorder={softBorder}>-</RotaCell>
     );
   }
 }
@@ -100,11 +83,12 @@ function RotaRow({ header, invert, children }) {
   );
 }
 
-function RotaCell({ wide, header, children }) {
+function RotaCell({ wide, header, softBorder, children }) {
   const className = classNames({
     'Rota-cell': true,
     'wide': wide,
     'header': header,
+    'soft-border': softBorder,
   });
 
   return (
