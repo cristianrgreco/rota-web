@@ -1,0 +1,32 @@
+.Rota {
+  display: flex;
+  flex-direction: column;
+}
+
+.Rota-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.Rota-cell {
+  box-sizing: border-box;
+  flex: 1;
+  padding: 15px 0;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+}
+
+.Rota-cell.wide {
+  flex: 2;
+}
+
+.header {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.invert {
+  background-color: #0a0a0a;
+  color: white;
+}
