@@ -11,10 +11,18 @@
 .Rota-cell {
   box-sizing: border-box;
   flex: 1;
-  padding: 15px 0;
+  padding: 10px 0;
   text-align: center;
   border-bottom: 1px solid #f0f0f0;
   border-right: 1px solid #f0f0f0;
+}
+
+.Rota-row:first-child .Rota-cell {
+  border-top: 1px solid #f0f0f0;
+}
+
+.Rota-cell:first-child {
+  border-left: 1px solid #f0f0f0;
 }
 
 .Rota-cell.wide {
@@ -27,6 +35,11 @@
 }
 
 .invert {
-  background-color: #0a0a0a;
+  background-color: #000;
   color: white;
+}
+
+.invert .Rota-cell {
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
 }
