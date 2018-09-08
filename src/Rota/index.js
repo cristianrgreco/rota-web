@@ -1,17 +1,19 @@
 import React, { Fragment } from 'react'
 import { asyncReactor } from 'async-reactor';
+import classNames from 'classnames';
 import { getWeek } from './week';
 import './index.css'
 import { fetchEmployees } from './employees'
 
 export default asyncReactor(async function Rota () {
+  const name = 'Kitchen';
   const today = new Date(2018, 7, 18)
   const week = getWeek(today);
   const employees = await fetchEmployees();
 
   return (
     <div className="Rota">
-      <RotaHeader name="Kitchen" week={week} />
+      <RotaHeader name={name} week={week} />
       {employees.map((employee, i) => (
         <RotaEmployee key={i} employee={employee} />
       ))}
@@ -22,32 +24,32 @@ export default asyncReactor(async function Rota () {
 function RotaHeader({ name, week }) {
   return (
     <Fragment>
-      <div className="Rota-row header">
-        <div className="Rota-cell wide">{name}</div>
+      <RotaRow header>
+        <RotaCell wide>{name}</RotaCell>
         {week.map((weekDay, i) => (
-          <div key={i} className="Rota-cell wide">{weekDay.format('ddd')}</div>
+          <RotaCell key={i} wide>{weekDay.format('ddd')}</RotaCell>
         ))}
-        <div className="Rota-cell">Total</div>
-      </div>
+        <RotaCell>Total</RotaCell>
+      </RotaRow>
 
-      <div className="Rota-row header">
-        <div className="Rota-cell wide">Rota</div>
+      <RotaRow header>
+        <RotaCell wide>Rota</RotaCell>
         {week.map((weekDay, i) => (
-          <div key={i} className="Rota-cell wide">{weekDay.format('DD/MM')}</div>
+          <RotaCell key={i} wide>{weekDay.format('DD/MM')}</RotaCell>
         ))}
-        <div className="Rota-cell">Hours</div>
-      </div>
+        <RotaCell>Hours</RotaCell>
+      </RotaRow>
 
-      <div className="Rota-row header invert">
-        <div className="Rota-cell wide"/>
+      <RotaRow header invert>
+        <RotaCell wide/>
         {week.map((_, i) => (
           <Fragment key={i}>
-            <div className="Rota-cell">AM</div>
-            <div className="Rota-cell">PM</div>
+            <RotaCell>AM</RotaCell>
+            <RotaCell>PM</RotaCell>
           </Fragment>
         ))}
-        <div className="Rota-cell"/>
-      </div>
+        <RotaCell/>
+      </RotaRow>
     </Fragment>
   );
 }
@@ -63,16 +65,16 @@ function RotaEmployee({ employee }) {
 
 function RotaEmployeeSchedule({ employee }) {
   return (
-    <div className="Rota-row">
-      <div className="Rota-cell header wide">{employee.name}</div>
+    <RotaRow>
+      <RotaCell header wide>{employee.name}</RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
           <RotaEmployeeSchedulePeriod schedule={am} />
           <RotaEmployeeSchedulePeriod schedule={pm} />
         </Fragment>
       ))}
-      <div className="Rota-cell"/>
-    </div>
+      <RotaCell/>
+    </RotaRow>
   );
 }
 
@@ -82,11 +84,11 @@ function RotaEmployeeSchedulePeriod({ schedule: period }) {
     const end = period.end > 12 ? period.end - 12 : period.end;
 
     return (
-      <div className="Rota-cell">{start}-{end}</div>
+      <RotaCell>{start}-{end}</RotaCell>
     );
   } else {
     return (
-      <div className="Rota-cell">-</div>
+      <RotaCell>-</RotaCell>
     );
   }
 }
@@ -95,29 +97,51 @@ function RotaEmployeeHours({ employee }) {
   const totalHours = calculateTotalHours(employee.schedule);
 
   return (
-    <div className="Rota-row">
-      <div className="Rota-cell wide">Hours</div>
+    <RotaRow>
+      <RotaCell wide>Hours</RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
           <RotaEmployeeHoursPeriod period={am} />
           <RotaEmployeeHoursPeriod period={pm} />
         </Fragment>
       ))}
-      <div className="Rota-cell">{totalHours}</div>
-    </div>
+      <RotaCell>{totalHours}</RotaCell>
+    </RotaRow>
   );
 }
 
 function RotaEmployeeHoursPeriod({ period }) {
-  if (period) {
-    return (
-      <div className="Rota-cell">{period.end - period.start}</div>
-    );
-  } else {
-    return (
-      <div className="Rota-cell">-</div>
-    );
-  }
+  return period
+    ? <RotaCell>{period.end - period.start}</RotaCell>
+    : <RotaCell>-</RotaCell>
+}
+
+function RotaRow({ header, invert, children }) {
+  const className = classNames({
+    'Rota-row': true,
+    'header': header,
+    'invert': invert,
+  });
+
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  );
+}
+
+function RotaCell({ wide, header, children }) {
+  const className = classNames({
+    'Rota-cell': true,
+    'wide': wide,
+    'header': header,
+  });
+
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  );
 }
 
 function calculateTotalHours(schedule) {
