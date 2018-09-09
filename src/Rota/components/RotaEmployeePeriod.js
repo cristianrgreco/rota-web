@@ -5,7 +5,7 @@ import { showPeriodSelector } from "../actions";
 
 function RotaEmployeePeriod({
   employee,
-  periodIndex,
+  scheduleIndex,
   period,
   softBorder,
   showPeriodSelector
@@ -13,7 +13,7 @@ function RotaEmployeePeriod({
   return (
     <RotaCell
       softBorder={softBorder}
-      onClick={() => showPeriodSelector(employee, periodIndex)}
+      onClick={() => showPeriodSelector(employee, scheduleIndex)}
     >
       {period ? `${formatTime(period.start)}-${formatTime(period.end)}` : "-"}
     </RotaCell>
@@ -27,7 +27,7 @@ function formatTime(time) {
 export default connect(
   null,
   dispatch => ({
-    showPeriodSelector: (employee, periodIndex) =>
-      dispatch(showPeriodSelector(employee, periodIndex))
+    showPeriodSelector: (employee, scheduleIndex) =>
+      dispatch(showPeriodSelector(employee, scheduleIndex))
   })
 )(RotaEmployeePeriod);

@@ -1,8 +1,56 @@
-.PeriodSelector {
+.PeriodSelector-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+.PeriodSelector {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eee;
+}
+
+.PeriodSelectorHeader {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.PeriodSelectorHeader-description {
+  flex: 1;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+.PeriodSelectorHeader-controls {
+}
+
+.TimePicker {
+  display: flex;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.TimePicker-label {
+  flex-basis: 75px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.TimePicker-picker {
+  width: 100px;
+}
+
+.TimePicker-separator {
+  margin-bottom: 20px;
 }

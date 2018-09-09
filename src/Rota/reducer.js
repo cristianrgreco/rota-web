@@ -1,11 +1,15 @@
-import { FETCH_EMPLOYEES_COMPLETE, SHOW_PERIOD_SELECTOR } from "./constants";
+import {
+  FETCH_EMPLOYEES_COMPLETE,
+  HIDE_PERIOD_SELECTOR,
+  SHOW_PERIOD_SELECTOR
+} from "./constants";
 
 const initialState = {
   employees: [],
   periodSelector: {
     enabled: false,
     employee: null,
-    periodIndex: null
+    scheduleIndex: null
   }
 };
 
@@ -20,7 +24,17 @@ export default (state = initialState, action) => {
           ...state.periodSelector,
           enabled: true,
           employee: action.payload.employee,
-          periodIndex: action.payload.periodIndex
+          scheduleIndex: action.payload.scheduleIndex
+        }
+      };
+    case HIDE_PERIOD_SELECTOR:
+      return {
+        ...state,
+        periodSelector: {
+          ...state.periodSelector,
+          enabled: false,
+          employee: null,
+          scheduleIndex: null
         }
       };
     default:

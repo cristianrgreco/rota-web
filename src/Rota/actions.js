@@ -1,4 +1,8 @@
-import { FETCH_EMPLOYEES_COMPLETE, SHOW_PERIOD_SELECTOR } from "./constants";
+import {
+  FETCH_EMPLOYEES_COMPLETE,
+  HIDE_PERIOD_SELECTOR,
+  SHOW_PERIOD_SELECTOR
+} from "./constants";
 
 export function fetchEmployees() {
   return async dispatch => {
@@ -40,9 +44,15 @@ function fetchEmployeesComplete(employees) {
   };
 }
 
-export function showPeriodSelector(employee, periodIndex) {
+export function showPeriodSelector(employee, scheduleIndex) {
   return {
     type: SHOW_PERIOD_SELECTOR,
-    payload: { employee, periodIndex }
+    payload: { employee, scheduleIndex }
+  };
+}
+
+export function hidePeriodSelector() {
+  return {
+    type: HIDE_PERIOD_SELECTOR
   };
 }

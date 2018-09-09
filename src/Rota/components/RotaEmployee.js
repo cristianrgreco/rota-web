@@ -13,11 +13,11 @@ export function RotaEmployee({ employee }) {
         <Fragment key={i}>
           <RotaEmployeePeriod
             employee={employee}
-            periodIndex={i}
+            scheduleIndex={i}
             period={am}
             softBorder
           />
-          <RotaEmployeePeriod employee={employee} periodIndex={i} period={pm} />
+          <RotaEmployeePeriod employee={employee} scheduleIndex={i} period={pm} />
         </Fragment>
       ))}
       <RotaCell>{totalHours}</RotaCell>

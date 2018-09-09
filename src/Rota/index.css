@@ -3,7 +3,6 @@
   --background-color-invert: #eee;
   --border-colour: #ddd;
   --border-width: 1px;
-  --colour: #333;
   --colour-invert: #333;
 }
 
@@ -15,7 +14,6 @@
 .Rota-row {
   display: flex;
   flex-direction: row;
-  color: var(--colour);
   background-color: var(--background-colour);
   border-bottom: var(--border-width) solid var(--border-colour);
 }
