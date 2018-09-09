@@ -1,7 +1,7 @@
-import { getWeek } from './week';
+import { getWeek } from "./week";
 
-describe('week', () => {
-  it('should return the week of the given date', () => {
+describe("week", () => {
+  it("should return the week of the given date", () => {
     const date = new Date(2015, 10, 25);
 
     const week = getWeek(date).map(m => m.toDate());
@@ -13,7 +13,7 @@ describe('week', () => {
       new Date(2015, 10, 26),
       new Date(2015, 10, 27),
       new Date(2015, 10, 28),
-      new Date(2015, 10, 29),
+      new Date(2015, 10, 29)
     ]);
   });
 });

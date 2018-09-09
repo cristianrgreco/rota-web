@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux';
-import { getWeek } from './week';
-import { fetchEmployees } from './actions';
-import { RotaHeader, RotaEmployee } from './components';
-import './index.css';
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { getWeek } from "./week";
+import { fetchEmployees } from "./actions";
+import { RotaHeader, RotaEmployee } from "./components";
+import "./index.css";
 
 class Rota extends PureComponent {
   componentDidMount() {
@@ -21,13 +21,13 @@ class Rota extends PureComponent {
           <RotaEmployee key={i} employee={employee} />
         ))}
       </div>
-    )
+    );
   }
 }
 
 export default connect(
   state => ({
-    employees: state.rota.employees,
+    employees: state.rota.employees
   }),
   dispatch => ({
     fetchEmployees: () => dispatch(fetchEmployees())

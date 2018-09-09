@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { RotaCell } from '.'
-import { showPeriodSelector } from '../actions';
+import React from "react";
+import { connect } from "react-redux";
+import { RotaCell } from ".";
+import { showPeriodSelector } from "../actions";
 
 export default connect(
   null,
@@ -10,18 +10,16 @@ export default connect(
   })
 )(RotaEmployeePeriod);
 
-function RotaEmployeePeriod ({period, softBorder, showPeriodSelector}) {
-  return period
-    ? (
-      <RotaCell onClick={showPeriodSelector} softBorder={softBorder}>
-        {formatTime(period.start)}-{formatTime(period.end)}
-      </RotaCell>
-    )
-    : (
-      <RotaCell onClick={showPeriodSelector} softBorder={softBorder}>
-        -
-      </RotaCell>
-    )
+function RotaEmployeePeriod({ period, softBorder, showPeriodSelector }) {
+  return period ? (
+    <RotaCell onClick={showPeriodSelector} softBorder={softBorder}>
+      {formatTime(period.start)}-{formatTime(period.end)}
+    </RotaCell>
+  ) : (
+    <RotaCell onClick={showPeriodSelector} softBorder={softBorder}>
+      -
+    </RotaCell>
+  );
 }
 
 function formatTime(time) {
