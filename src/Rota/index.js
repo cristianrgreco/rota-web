@@ -31,7 +31,7 @@ function RotaHeader({ week }) {
             <div>{weekDay.format('DD/MM')}</div>
           </RotaCell>
         ))}
-        <RotaCell>Hours</RotaCell>
+        <RotaCell/>
       </RotaRow>
     </Fragment>
   );

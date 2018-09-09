@@ -1,11 +1,10 @@
 :root {
   --background-colour: #fff;
-  --background-color-invert: #000;
+  --background-color-invert: #eee;
   --border-colour: #ddd;
-  --border-colour-invert: #333;
-  --border-colour-soft: #f8f8f8;
   --border-width: 1px;
-  --colour-invert: #fff;
+  --colour: #333;
+  --colour-invert: #333;
 }
 
 .Rota {
@@ -16,32 +15,29 @@
 .Rota-row {
   display: flex;
   flex-direction: row;
+  color: var(--colour);
   background-color: var(--background-colour);
+  border-bottom: var(--border-width) solid var(--border-colour);
 }
 
 .Rota-cell {
   box-sizing: border-box;
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 40px;
   padding: 10px 0;
   text-align: center;
-  border-bottom: var(--border-width) solid var(--border-colour);
   border-right: var(--border-width) solid var(--border-colour);
 }
 
 .Rota-cell.wide {
-  flex: 2;
-}
-
-.Rota-row:first-child .Rota-cell {
-  border-top: var(--border-width) solid var(--border-colour);
-}
-
-.Rota-cell:first-child {
-  border-left: var(--border-width) solid var(--border-colour);
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 80px;
 }
 
 .Rota-cell.soft-border {
-  border-right: var(--border-width) solid var(--border-colour-soft);
+  border-right: var(--border-width) dashed var(--border-colour);
 }
 
 .header {
@@ -52,9 +48,4 @@
 .invert {
   background-color: var(--background-color-invert);
   color: var(--colour-invert);
-}
-
-.invert .Rota-cell {
-  border-bottom: var(--border-width) solid var(--border-colour-invert);
-  border-right: var(--border-width) solid var(--border-colour-invert);
 }
