@@ -11,8 +11,8 @@ export function RotaEmployee({ employee }) {
       </RotaCell>
       {employee.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
-          <RotaEmployeePeriod softBorder period={am} />
-          <RotaEmployeePeriod period={pm} />
+          <RotaEmployeePeriod employee={employee} period={am} softBorder />
+          <RotaEmployeePeriod employee={employee} period={pm} />
         </Fragment>
       ))}
       <RotaCell>{totalHours}</RotaCell>

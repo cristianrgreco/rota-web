@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { RotaCell } from ".";
 import { showPeriodSelector } from "../actions";
 
-export default connect(
-  null,
-  dispatch => ({
-    showPeriodSelector: () => dispatch(showPeriodSelector())
-  })
-)(RotaEmployeePeriod);
-
-function RotaEmployeePeriod({ period, softBorder, showPeriodSelector }) {
+function RotaEmployeePeriod({
+  employee,
+  period,
+  softBorder,
+  showPeriodSelector
+}) {
   return period ? (
-    <RotaCell onClick={showPeriodSelector} softBorder={softBorder}>
+    <RotaCell
+      onClick={() => showPeriodSelector(employee, period)}
+      softBorder={softBorder}
+    >
       {formatTime(period.start)}-{formatTime(period.end)}
     </RotaCell>
   ) : (
@@ -25,3 +26,11 @@ function RotaEmployeePeriod({ period, softBorder, showPeriodSelector }) {
 function formatTime(time) {
   return time > 12 ? time - 12 : time;
 }
+
+export default connect(
+  null,
+  dispatch => ({
+    showPeriodSelector: (employee, period) =>
+      dispatch(showPeriodSelector(employee, period))
+  })
+)(RotaEmployeePeriod);
