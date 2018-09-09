@@ -1,24 +1,38 @@
-import React, { Fragment } from 'react'
-import { asyncReactor } from 'async-reactor';
+import React, { PureComponent, Fragment } from 'react'
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { getWeek } from './week';
 import './index.css'
-import { fetchEmployees } from './employees'
+import { fetchEmployees } from './actions'
 
-export default asyncReactor(async function Rota () {
-  const today = new Date(2018, 7, 18)
-  const week = getWeek(today);
-  const employees = await fetchEmployees();
+class Rota extends PureComponent {
+  componentDidMount() {
+    this.props.fetchEmployees();
+  }
 
-  return (
-    <div className="Rota">
-      <RotaHeader week={week} />
-      {employees.map((employee, i) => (
-        <RotaEmployee key={i} employee={employee} />
-      ))}
-    </div>
-  )
-})
+  render() {
+    const today = new Date(2018, 7, 18);
+    const week = getWeek(today);
+
+    return (
+      <div className="Rota">
+        <RotaHeader week={week} />
+        {this.props.employees.map((employee, i) => (
+          <RotaEmployee key={i} employee={employee} />
+        ))}
+      </div>
+    )
+  }
+}
+
+export default connect(
+  state => ({
+    employees: state.rota.employees,
+  }),
+  dispatch => ({
+    fetchEmployees: () => dispatch(fetchEmployees())
+  })
+)(Rota)
 
 function RotaHeader({ week }) {
   return (
@@ -55,16 +69,16 @@ function RotaEmployee({ employee }) {
 }
 
 function RotaEmployeePeriod({ period, softBorder }) {
-  if (period) {
-    const start = period.start > 12 ? period.start - 12: period.start;
-    const end = period.end > 12 ? period.end - 12 : period.end;
+  const onClick = () => console.log('CLICKIE');
 
+  if (period) {
+    const { start, end } = formatPeriod(period);
     return (
-      <RotaCell softBorder={softBorder}>{start}-{end}</RotaCell>
+      <RotaCell onClick={onClick} softBorder={softBorder}>{start}-{end}</RotaCell>
     );
   } else {
     return (
-      <RotaCell softBorder={softBorder}>-</RotaCell>
+      <RotaCell onClick={onClick} softBorder={softBorder}>-</RotaCell>
     );
   }
 }
@@ -83,7 +97,7 @@ function RotaRow({ header, invert, children }) {
   );
 }
 
-function RotaCell({ wide, header, softBorder, children }) {
+function RotaCell({ wide, header, softBorder, onClick, children }) {
   const className = classNames({
     'Rota-cell': true,
     'wide': wide,
@@ -92,10 +106,16 @@ function RotaCell({ wide, header, softBorder, children }) {
   });
 
   return (
-    <div className={className}>
+    <div className={className} onClick={onClick}>
       {children}
     </div>
   );
+}
+
+function formatPeriod(period) {
+  const start = period.start > 12 ? period.start - 12: period.start;
+  const end = period.end > 12 ? period.end - 12 : period.end;
+  return { start, end };
 }
 
 function calculateTotalHours(schedule) {
