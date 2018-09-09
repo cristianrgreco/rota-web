@@ -1,8 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import "./PeriodSelector.css";
 
 function PeriodSelector({ employee, period }) {
-  return <span />;
+  return (
+    <div className="PeriodSelector">
+      <span>Period Selector</span>
+    </div>
+  );
 }
 
 export default connect(

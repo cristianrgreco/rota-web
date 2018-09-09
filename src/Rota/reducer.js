@@ -5,7 +5,7 @@ const initialState = {
   periodSelector: {
     enabled: false,
     employee: null,
-    period: null
+    periodIndex: null
   }
 };
 
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
           ...state.periodSelector,
           enabled: true,
           employee: action.payload.employee,
-          period: action.payload.period
+          periodIndex: action.payload.periodIndex
         }
       };
     default:

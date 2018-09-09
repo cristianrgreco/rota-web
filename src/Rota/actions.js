@@ -40,9 +40,9 @@ function fetchEmployeesComplete(employees) {
   };
 }
 
-export function showPeriodSelector(employee, period) {
+export function showPeriodSelector(employee, periodIndex) {
   return {
     type: SHOW_PERIOD_SELECTOR,
-    payload: { employee, period }
+    payload: { employee, periodIndex }
   };
 }
