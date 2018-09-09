@@ -1,3 +1,5 @@
+import { FETCH_EMPLOYEES_COMPLETE, SHOW_PERIOD_SELECTOR } from './constants'
+
 export function fetchEmployees() {
   return async dispatch => {
     const employees = await Promise.resolve([
@@ -33,7 +35,13 @@ export function fetchEmployees() {
 
 function fetchEmployeesComplete(employees) {
   return {
-    type: 'FETCH_EMPLOYEES_COMPLETE',
+    type: FETCH_EMPLOYEES_COMPLETE,
     payload: employees,
+  };
+}
+
+export function showPeriodSelector() {
+  return {
+    type: SHOW_PERIOD_SELECTOR
   };
 }
