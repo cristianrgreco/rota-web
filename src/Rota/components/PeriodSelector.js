@@ -41,6 +41,7 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
           <div className="TimePicker-separator" />
           <div className="TimePicker-separator" />
         </div>
+
         <Button onClick={onSave}>Save</Button>
       </div>
     </div>

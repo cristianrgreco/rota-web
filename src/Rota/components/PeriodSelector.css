@@ -62,11 +62,6 @@
   border-radius: 4px;
 }
 
-.PeriodTimePicker,
-.rc-time-picker-panel-select {
-  font-size: 0.75rem;
-}
-
 .PeriodTimePicker-label {
   flex-basis: 85px;
   align-self: center;
