@@ -10,7 +10,3 @@
   color: #fff;
   background-color: #b20000;
 }
-
-.CloseButton::after {
-  content: 'X';
-}
