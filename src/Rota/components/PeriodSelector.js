@@ -8,56 +8,81 @@ import "rc-time-picker/assets/index.css";
 import "./PeriodSelector.css";
 
 function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
-  const { am, pm } = employee.schedule[scheduleIndex];
+  const { date, am, pm } = employee.schedule[scheduleIndex];
+  const onTimePickerChange = dateMoment => console.log(dateMoment);
+  const onSave = () => hidePeriodSelector();
 
   return (
     <div className="PeriodSelector-wrapper">
       <div className="PeriodSelectorHeader">
         <div className="PeriodSelectorHeader-description">
-          <span>{employee.name}</span>
+          <span>
+            {employee.name} - {date.format("ddd DD/MM")}
+          </span>
         </div>
         <div className="PeriodSelectorHeader-controls">
-          <CloseButton onClick={hidePeriodSelector} />
+          <div className="CloseButton-wrapper">
+            <CloseButton onClick={hidePeriodSelector} />
+          </div>
         </div>
       </div>
 
       <div className="PeriodSelector">
-        <CustomTimePicker label="Morning start:" value={am ? am.start : null} />
-        <CustomTimePicker label="Morning end:" value={am ? am.end : null} />
-        <div className="TimePicker-separator" />
-        <CustomTimePicker label="Evening start:" value={pm ? pm.start : null} />
-        <CustomTimePicker label="Evening end:" value={pm ? pm.end : null} />
-        <div className="TimePicker-separator" />
-        <Button>Save</Button>
+        <div className="PeriodSelector-controls">
+          <PeriodTimePicker
+            label="Morning"
+            period={am}
+            onChange={onTimePickerChange}
+          />
+          <div className="TimePicker-separator" />
+          <PeriodTimePicker
+            label="Afternoon"
+            period={pm}
+            onChange={onTimePickerChange}
+          />
+          <div className="TimePicker-separator" />
+          <div className="TimePicker-separator" />
+        </div>
+
+        <Button onClick={onSave}>Save</Button>
       </div>
     </div>
   );
 }
 
-function PeriodTimePicker({ period }) {
+function PeriodTimePicker({ label, period, onChange }) {
   return (
     <div className="PeriodTimePicker">
-      <CustomTimePicker
-        label="Morning start:"
-        value={period ? period.start : null}
-      />
-      <CustomTimePicker
-        label="Morning end:"
-        value={period ? period.end : null}
-      />
+      <div className="PeriodTimePicker-label">
+        <span>{label}</span>
+      </div>
+      <div className="PeriodTimePicker-controls">
+        <CustomTimePicker
+          label="Start"
+          value={period ? period.start : null}
+          onChange={onChange}
+        />
+        <div className="TimePicker-separator" />
+        <CustomTimePicker
+          label="End"
+          value={period ? period.end : null}
+          onChange={onChange}
+        />
+      </div>
     </div>
   );
 }
 
-function CustomTimePicker({ label, value }) {
+function CustomTimePicker({ label, value, onChange }) {
   const defaultValue = value ? moment(value, "H") : null;
 
   return (
     <div className="TimePicker">
-      <span className="TimePicker-label">{label}</span>
+      <div className="TimePicker-label">{label}</div>
       <TimePicker
         className="TimePicker-picker"
         defaultValue={defaultValue}
+        onChange={onChange}
         showSecond={false}
         showMinute={false}
         allowEmpty={false}

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import {
   FETCH_EMPLOYEES_COMPLETE,
   HIDE_PERIOD_SELECTOR,
@@ -10,25 +12,45 @@ export function fetchEmployees() {
       {
         name: "Adam",
         schedule: [
-          { am: null, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: null }
+          { date: moment(new Date(2018, 7, 13)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 14)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 16)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 17)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 18)), am: null, pm: null },
+          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
         ]
       },
       {
         name: "Ellias",
         schedule: [
-          { am: { start: 8, end: 16 }, pm: null },
-          { am: { start: 8, end: 16 }, pm: null },
-          { am: null, pm: null },
-          { am: null, pm: { start: 16, end: 23 } },
-          { am: null, pm: { start: 16, end: 23 } },
-          { am: null, pm: { start: 16, end: 23 } },
-          { am: null, pm: null }
+          {
+            date: moment(new Date(2018, 7, 13)),
+            am: { start: 8, end: 16 },
+            pm: null
+          },
+          {
+            date: moment(new Date(2018, 7, 14)),
+            am: { start: 8, end: 16 },
+            pm: null
+          },
+          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
+          {
+            date: moment(new Date(2018, 7, 16)),
+            am: null,
+            pm: { start: 16, end: 23 }
+          },
+          {
+            date: moment(new Date(2018, 7, 17)),
+            am: null,
+            pm: { start: 16, end: 23 }
+          },
+          {
+            date: moment(new Date(2018, 7, 18)),
+            am: null,
+            pm: { start: 16, end: 23 }
+          },
+          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
         ]
       }
     ]);
