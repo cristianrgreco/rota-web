@@ -9,6 +9,7 @@ import "./PeriodSelector.css";
 
 function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
   const { am, pm } = employee.schedule[scheduleIndex];
+  const onSave = () => hidePeriodSelector();
 
   return (
     <div className="PeriodSelector-wrapper">
@@ -17,28 +18,37 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
           <span>{employee.name}</span>
         </div>
         <div className="PeriodSelectorHeader-controls">
-          <CloseButton onClick={hidePeriodSelector} />
+          <div className="CloseButton-wrapper">
+            <CloseButton onClick={hidePeriodSelector} />
+          </div>
         </div>
       </div>
 
       <div className="PeriodSelector">
-        <CustomTimePicker label="Morning start:" value={am ? am.start : null} />
-        <CustomTimePicker label="Morning end:" value={am ? am.end : null} />
-        <div className="TimePicker-separator" />
-        <CustomTimePicker label="Evening start:" value={pm ? pm.start : null} />
-        <CustomTimePicker label="Evening end:" value={pm ? pm.end : null} />
-        <div className="TimePicker-separator" />
-        <Button>Save</Button>
+        <div className="PeriodSelector-controls">
+          <PeriodTimePicker label="Morning" period={am} />
+          <div className="TimePicker-separator" />
+          <PeriodTimePicker label="Afternoon" period={pm} />
+          <div className="TimePicker-separator" />
+          <div className="TimePicker-separator" />
+        </div>
+        <Button onClick={onSave}>Save</Button>
       </div>
     </div>
   );
 }
 
-function PeriodTimePicker({ period }) {
+function PeriodTimePicker({ label, period }) {
   return (
     <div className="PeriodTimePicker">
-      <CustomTimePicker label="Morning start:" value={period ? period.start : null} />
-      <CustomTimePicker label="Morning end:" value={period ? period.end : null} />
+      <div className="PeriodTimePicker-label">
+        <span>{label}</span>
+      </div>
+      <div className="PeriodTimePicker-controls">
+        <CustomTimePicker label="Start" value={period ? period.start : null} />
+        <div className="TimePicker-separator" />
+        <CustomTimePicker label="End" value={period ? period.end : null} />
+      </div>
     </div>
   )
 }
@@ -48,7 +58,7 @@ function CustomTimePicker({ label, value }) {
 
   return (
     <div className="TimePicker">
-      <span className="TimePicker-label">{label}</span>
+      <div className="TimePicker-label">{label}</div>
       <TimePicker
         className="TimePicker-picker"
         defaultValue={defaultValue}
