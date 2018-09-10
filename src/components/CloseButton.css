@@ -9,7 +9,6 @@
   font-weight: bold;
   color: #fff;
   background-color: #b20000;
-  border-left: 1px solid #ddd;
 }
 
 .CloseButton::after {

@@ -58,9 +58,13 @@
   width: 350px;
   box-sizing: border-box;
   padding: 10px;
-  font-size: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+.PeriodTimePicker,
+.rc-time-picker-panel-select {
+  font-size: 0.75rem;
 }
 
 .PeriodTimePicker-label {
