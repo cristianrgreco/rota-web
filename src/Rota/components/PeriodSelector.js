@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import moment from 'moment';
+import moment from "moment";
 import TimePicker from "rc-time-picker";
 import { Button, CloseButton } from "../../components";
 import { hidePeriodSelector } from "../actions";
@@ -9,6 +9,7 @@ import "./PeriodSelector.css";
 
 function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
   const { am, pm } = employee.schedule[scheduleIndex];
+  const onTimePickerChange = dateMoment => console.log(dateMoment);
   const onSave = () => hidePeriodSelector();
 
   return (
@@ -26,9 +27,17 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
 
       <div className="PeriodSelector">
         <div className="PeriodSelector-controls">
-          <PeriodTimePicker label="Morning" period={am} />
+          <PeriodTimePicker
+            label="Morning"
+            period={am}
+            onChange={onTimePickerChange}
+          />
           <div className="TimePicker-separator" />
-          <PeriodTimePicker label="Afternoon" period={pm} />
+          <PeriodTimePicker
+            label="Afternoon"
+            period={pm}
+            onChange={onTimePickerChange}
+          />
           <div className="TimePicker-separator" />
           <div className="TimePicker-separator" />
         </div>
@@ -38,23 +47,31 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
   );
 }
 
-function PeriodTimePicker({ label, period }) {
+function PeriodTimePicker({ label, period, onChange }) {
   return (
     <div className="PeriodTimePicker">
       <div className="PeriodTimePicker-label">
         <span>{label}</span>
       </div>
       <div className="PeriodTimePicker-controls">
-        <CustomTimePicker label="Start" value={period ? period.start : null} />
+        <CustomTimePicker
+          label="Start"
+          value={period ? period.start : null}
+          onChange={onChange}
+        />
         <div className="TimePicker-separator" />
-        <CustomTimePicker label="End" value={period ? period.end : null} />
+        <CustomTimePicker
+          label="End"
+          value={period ? period.end : null}
+          onChange={onChange}
+        />
       </div>
     </div>
-  )
+  );
 }
 
-function CustomTimePicker({ label, value }) {
-  const defaultValue = value ? moment(value, 'H') : null;
+function CustomTimePicker({ label, value, onChange }) {
+  const defaultValue = value ? moment(value, "H") : null;
 
   return (
     <div className="TimePicker">
@@ -62,6 +79,7 @@ function CustomTimePicker({ label, value }) {
       <TimePicker
         className="TimePicker-picker"
         defaultValue={defaultValue}
+        onChange={onChange}
         showSecond={false}
         showMinute={false}
         allowEmpty={false}
