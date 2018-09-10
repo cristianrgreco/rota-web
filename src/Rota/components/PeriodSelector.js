@@ -8,7 +8,7 @@ import "rc-time-picker/assets/index.css";
 import "./PeriodSelector.css";
 
 function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
-  const { am, pm } = employee.schedule[scheduleIndex];
+  const { date, am, pm } = employee.schedule[scheduleIndex];
   const onTimePickerChange = dateMoment => console.log(dateMoment);
   const onSave = () => hidePeriodSelector();
 
@@ -16,7 +16,9 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
     <div className="PeriodSelector-wrapper">
       <div className="PeriodSelectorHeader">
         <div className="PeriodSelectorHeader-description">
-          <span>{employee.name}</span>
+          <span>
+            {employee.name} - {date.format("ddd DD/MM")}
+          </span>
         </div>
         <div className="PeriodSelectorHeader-controls">
           <div className="CloseButton-wrapper">
