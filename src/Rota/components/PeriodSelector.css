@@ -6,24 +6,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  padding: 20px 20px 55px 20px;
-}
-
-.PeriodSelector {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #fff;
-  border-radius: 0 0 4px 4px;
-  overflow: hidden;
-}
-
-.PeriodSelector-controls {
-  margin-right: 20px;
+  padding: 20px;
 }
 
 .PeriodSelectorHeader {
@@ -49,6 +32,23 @@
 }
 
 .PeriodSelectorHeader-controls {
+}
+
+.PeriodSelector {
+  height: calc(100% - 35px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.PeriodSelector-controls {
+  margin-right: 20px;
 }
 
 .PeriodTimePicker {
