@@ -88,6 +88,10 @@
   width: 100px;
 }
 
+.TimePicker-picker .rc-time-picker-input {
+  font-size: 1rem;
+}
+
 .TimePicker-separator {
   margin-bottom: 10px;
 }
