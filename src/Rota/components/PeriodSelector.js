@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import moment from 'moment';
+import moment from "moment";
 import TimePicker from "rc-time-picker";
 import { Button, CloseButton } from "../../components";
 import { hidePeriodSelector } from "../actions";
@@ -37,14 +37,20 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
 function PeriodTimePicker({ period }) {
   return (
     <div className="PeriodTimePicker">
-      <CustomTimePicker label="Morning start:" value={period ? period.start : null} />
-      <CustomTimePicker label="Morning end:" value={period ? period.end : null} />
+      <CustomTimePicker
+        label="Morning start:"
+        value={period ? period.start : null}
+      />
+      <CustomTimePicker
+        label="Morning end:"
+        value={period ? period.end : null}
+      />
     </div>
-  )
+  );
 }
 
 function CustomTimePicker({ label, value }) {
-  const defaultValue = value ? moment(value, 'H') : null;
+  const defaultValue = value ? moment(value, "H") : null;
 
   return (
     <div className="TimePicker">
