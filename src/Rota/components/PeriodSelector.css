@@ -90,6 +90,7 @@
 
 .TimePicker-picker .rc-time-picker-input {
   font-size: 1rem;
+  color: #333;
 }
 
 .TimePicker-separator {
