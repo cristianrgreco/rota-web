@@ -63,7 +63,7 @@
 }
 
 .PeriodTimePicker-label {
-  flex-basis: 85px;
+  flex-basis: 100px;
   align-self: center;
   text-transform: uppercase;
 }
