@@ -2,8 +2,10 @@ import moment from "moment";
 
 import {
   FETCH_EMPLOYEES_COMPLETE,
-  HIDE_PERIOD_SELECTOR,
-  SHOW_PERIOD_SELECTOR
+  SAVE_SCHEDULE,
+  MODIFY_SCHEDULE,
+  SHOW_PERIOD_SELECTOR,
+  HIDE_PERIOD_SELECTOR
 } from "./constants";
 
 export function fetchEmployees() {
@@ -59,6 +61,20 @@ export function fetchEmployees() {
   };
 }
 
+export function saveSchedule(employeeIndex) {
+  return {
+    type: SAVE_SCHEDULE,
+    payload: employeeIndex
+  };
+}
+
+export function modifySchedule(scheduleIndex, schedule) {
+  return {
+    type: MODIFY_SCHEDULE,
+    payload: { scheduleIndex, schedule }
+  };
+}
+
 function fetchEmployeesComplete(employees) {
   return {
     type: FETCH_EMPLOYEES_COMPLETE,
@@ -66,10 +82,10 @@ function fetchEmployeesComplete(employees) {
   };
 }
 
-export function showPeriodSelector(employee, scheduleIndex) {
+export function showPeriodSelector(employee, employeeIndex, scheduleIndex) {
   return {
     type: SHOW_PERIOD_SELECTOR,
-    payload: { employee, scheduleIndex }
+    payload: { employee, employeeIndex, scheduleIndex }
   };
 }
 

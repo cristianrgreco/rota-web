@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import moment from "moment";
 import TimePicker from "rc-time-picker";
 import { Button, CloseButton } from "../../components";
-import { hidePeriodSelector } from "../actions";
+import { hidePeriodSelector, saveSchedule, modifySchedule } from "../actions";
 import "rc-time-picker/assets/index.css";
 import "./PeriodSelector.css";
 
-function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
+function PeriodSelector({
+  employee,
+  employeeIndex,
+  scheduleIndex,
+  modifySchedule,
+  savePeriod,
+  hidePeriodSelector
+}) {
   const { date, am, pm } = employee.schedule[scheduleIndex];
-  const onTimePickerChange = dateMoment => console.log(dateMoment);
-  const onSave = () => hidePeriodSelector();
 
   return (
     <div className="PeriodSelector-wrapper">
@@ -32,25 +37,34 @@ function PeriodSelector({ employee, scheduleIndex, hidePeriodSelector }) {
           <PeriodTimePicker
             label="Morning"
             period={am}
-            onChange={onTimePickerChange}
+            onChange={am => modifySchedule(scheduleIndex, { date, am, pm })}
           />
           <div className="TimePicker-separator" />
           <PeriodTimePicker
             label="Afternoon"
             period={pm}
-            onChange={onTimePickerChange}
+            onChange={pm => modifySchedule(scheduleIndex, { date, am, pm })}
           />
           <div className="TimePicker-separator" />
           <div className="TimePicker-separator" />
         </div>
 
-        <Button onClick={onSave}>Save</Button>
+        <Button
+          onClick={() => {
+            savePeriod(employeeIndex);
+            hidePeriodSelector();
+          }}
+        >
+          Save
+        </Button>
       </div>
     </div>
   );
 }
 
 function PeriodTimePicker({ label, period, onChange }) {
+  const dateToHour = dateMoment => +dateMoment.format("H");
+
   return (
     <div className="PeriodTimePicker">
       <div className="PeriodTimePicker-label">
@@ -60,13 +74,23 @@ function PeriodTimePicker({ label, period, onChange }) {
         <CustomTimePicker
           label="Start"
           value={period ? period.start : null}
-          onChange={onChange}
+          onChange={dateMoment =>
+            onChange({
+              start: dateToHour(dateMoment),
+              end: period ? period.end : null
+            })
+          }
         />
         <div className="TimePicker-separator" />
         <CustomTimePicker
           label="End"
           value={period ? period.end : null}
-          onChange={onChange}
+          onChange={dateMoment =>
+            onChange({
+              start: period ? period.start : null,
+              end: dateToHour(dateMoment)
+            })
+          }
         />
       </div>
     </div>
@@ -96,9 +120,13 @@ function CustomTimePicker({ label, value, onChange }) {
 export default connect(
   state => ({
     employee: state.rota.periodSelector.employee,
+    employeeIndex: state.rota.periodSelector.employeeIndex,
     scheduleIndex: state.rota.periodSelector.scheduleIndex
   }),
   dispatch => ({
+    savePeriod: employeeIndex => dispatch(saveSchedule(employeeIndex)),
+    modifySchedule: (employee, scheduleIndex, period) =>
+      dispatch(modifySchedule(employee, scheduleIndex, period)),
     hidePeriodSelector: () => dispatch(hidePeriodSelector())
   })
 )(PeriodSelector);
