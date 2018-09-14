@@ -26,7 +26,7 @@ export function RotaEmployee({ employee, employeeIndex }) {
           />
         </Fragment>
       ))}
-      <RotaCell>{totalHours}</RotaCell>
+      <RotaCell header>{totalHours}</RotaCell>
     </RotaRow>
   );
 }

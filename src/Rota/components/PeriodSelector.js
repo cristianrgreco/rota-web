@@ -11,6 +11,7 @@ function PeriodSelector({
   employee,
   employeeIndex,
   scheduleIndex,
+  hasModified,
   modifySchedule,
   savePeriod,
   hidePeriodSelector
@@ -50,6 +51,11 @@ function PeriodSelector({
         </div>
 
         <Button
+          disabled={
+            !hasModified ||
+            (am && (am.start === null) ^ (am.end === null)) ||
+            (pm && (pm.start === null) ^ (pm.end === null))
+          }
           onClick={() => {
             savePeriod(employeeIndex);
             hidePeriodSelector();
@@ -121,7 +127,8 @@ export default connect(
   state => ({
     employee: state.rota.periodSelector.employee,
     employeeIndex: state.rota.periodSelector.employeeIndex,
-    scheduleIndex: state.rota.periodSelector.scheduleIndex
+    scheduleIndex: state.rota.periodSelector.scheduleIndex,
+    hasModified: state.rota.periodSelector.hasModified
   }),
   dispatch => ({
     savePeriod: employeeIndex => dispatch(saveSchedule(employeeIndex)),

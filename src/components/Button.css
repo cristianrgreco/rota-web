@@ -1,5 +1,4 @@
 .Button {
-  cursor: default;
   color: #333;
   background-color: #fff;
   box-sizing: border-box;
@@ -9,4 +8,10 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.Button[disabled] {
+  color: #ccc;
+  background-color: #eee;
+  box-shadow: none;
 }

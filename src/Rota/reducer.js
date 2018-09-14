@@ -11,7 +11,8 @@ const initialState = {
   periodSelector: {
     enabled: false,
     employee: null,
-    scheduleIndex: null
+    scheduleIndex: null,
+    hasModified: false
   }
 };
 
@@ -48,6 +49,7 @@ function modifySchedule(state, action) {
     ...state,
     periodSelector: {
       ...state.periodSelector,
+      hasModified: true,
       employee: {
         ...state.periodSelector.employee,
         schedule: [
@@ -85,7 +87,8 @@ function hidePeriodSelector(state) {
       ...state.periodSelector,
       enabled: false,
       employee: null,
-      scheduleIndex: null
+      scheduleIndex: null,
+      hasModified: false
     }
   };
 }
