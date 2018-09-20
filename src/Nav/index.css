@@ -1,12 +1,52 @@
 .Nav {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ddd;
+  background-color: #111;
+  border-bottom: 1px solid #222;
 }
 
 .NavItem {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 5px 3rem;
+  border-right: 1px solid #222;
+  color: #ddd;
+  background-color: #111;
+}
+
+.NavItem:hover {
+  color: #fff;
+}
+
+.NavItem:hover .NavItemDropDown {
+  display: block;
+}
+
+.NavItem:first-child {
+  border-left: 1px solid #222;
 }
 
 .NavItemLabel {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .NavItemDropDown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.NavItemDropDown .NavItem {
+  border-top: 1px solid #222;
+}
+
+.NavItemDropDown .NavItem:last-child {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
