@@ -1,24 +1,33 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { NavItemDropDown, NavItem, NavItemLabel } from "./components";
 import "./index.css";
 
 export default function Nav() {
   return (
-    <nav className="Nav">
-      <NavItem>
-        <NavItemLabel>Rotas</NavItemLabel>
-        <NavItemDropDown>
-          <NavItem>
-            <NavItemLabel>Porters</NavItemLabel>
-          </NavItem>
-          <NavItem>
-            <NavItemLabel>Kitchen</NavItemLabel>
-          </NavItem>
-        </NavItemDropDown>
-      </NavItem>
-      <NavItem>
-        <NavItemLabel>Employees</NavItemLabel>
-      </NavItem>
-    </nav>
+    <Fragment>
+      <nav className="Nav">
+        <NavItem>
+          <NavItemLabel>Rotas</NavItemLabel>
+          <NavItemDropDown>
+            <NavItem>
+              <NavItemLabel>
+                <Link to="/rotas">Porters</Link>
+              </NavItemLabel>
+            </NavItem>
+            <NavItem>
+              <NavItemLabel>
+                <Link to="/rotas">Kitchen</Link>
+              </NavItemLabel>
+            </NavItem>
+          </NavItemDropDown>
+        </NavItem>
+        <NavItem>
+          <NavItemLabel>
+            <Link to="/employees">Employees</Link>
+          </NavItemLabel>
+        </NavItem>
+      </nav>
+    </Fragment>
   );
 }
