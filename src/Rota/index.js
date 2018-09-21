@@ -7,13 +7,7 @@ import "./index.css";
 
 class Rota extends PureComponent {
   componentDidMount() {
-    this.props.fetchRota(this.props.match.params.rota);
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.match.params.rota !== newProps.match.params.rota) {
-      this.props.fetchRota(newProps.match.params.rota);
-    }
+    this.props.fetchRota();
   }
 
   render() {

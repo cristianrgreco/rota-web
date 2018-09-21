@@ -8,75 +8,7 @@ import {
   HIDE_PERIOD_SELECTOR
 } from "./constants";
 
-export function fetchRota(rotaName) {
-  return async dispatch => {
-    switch (rotaName) {
-      case "porters":
-        return dispatch(fetchPortersRota());
-      case "kitchen":
-        return dispatch(fetchKitchenRota());
-      default:
-        throw new Error(`unexpected rotaName: ${rotaName}`);
-    }
-  };
-}
-
-function fetchPortersRota() {
-  return async dispatch => {
-    const rota = await Promise.resolve([
-      {
-        id: 1,
-        name: "Juan",
-        schedule: [
-          { date: moment(new Date(2018, 7, 13)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 14)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 16)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 17)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 18)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
-        ]
-      },
-      {
-        id: 2,
-        name: "Gustavo",
-        schedule: [
-          {
-            date: moment(new Date(2018, 7, 13)),
-            am: { start: 8, end: 16 },
-            pm: null
-          },
-          {
-            date: moment(new Date(2018, 7, 14)),
-            am: { start: 8, end: 16 },
-            pm: null
-          },
-          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
-          {
-            date: moment(new Date(2018, 7, 16)),
-            am: null,
-            pm: { start: 16, end: 23 }
-          },
-          {
-            date: moment(new Date(2018, 7, 17)),
-            am: null,
-            pm: { start: 16, end: 23 }
-          },
-          {
-            date: moment(new Date(2018, 7, 18)),
-            am: null,
-            pm: { start: 16, end: 23 }
-          },
-          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
-        ]
-      }
-    ]);
-
-    dispatch(fetchRotaComplete(rota));
-  };
-}
-
-function fetchKitchenRota() {
+export function fetchRota() {
   return async dispatch => {
     const rota = await Promise.resolve([
       {
