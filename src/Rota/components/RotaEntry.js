@@ -1,27 +1,23 @@
 import React, { Fragment } from "react";
 import { RotaRow, RotaCell, RotaEmployeePeriod } from ".";
 
-export function RotaEmployee({ employee }) {
-  const totalHours = calculateTotalHours(employee.schedule);
+export function RotaEntry({ rota }) {
+  const totalHours = calculateTotalHours(rota.schedule);
 
   return (
     <RotaRow>
       <RotaCell header wide>
-        {employee.name}
+        {rota.name}
       </RotaCell>
-      {employee.schedule.map(({ am, pm }, i) => (
+      {rota.schedule.map(({ am, pm }, i) => (
         <Fragment key={i}>
           <RotaEmployeePeriod
-            employee={employee}
+            employee={rota}
             scheduleIndex={i}
             period={am}
             softBorder
           />
-          <RotaEmployeePeriod
-            employee={employee}
-            scheduleIndex={i}
-            period={pm}
-          />
+          <RotaEmployeePeriod employee={rota} scheduleIndex={i} period={pm} />
         </Fragment>
       ))}
       <RotaCell header>{totalHours}</RotaCell>

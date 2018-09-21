@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 const initialState = {
-  employees: [],
+  rotas: [],
   periodSelector: {
     enabled: false,
     employee: null,
@@ -19,7 +19,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ROTA_COMPLETE:
-      return { ...state, employees: action.payload };
+      return { ...state, rotas: action.payload };
     case SAVE_SCHEDULE:
       return saveSchedule(state, action);
     case MODIFY_SCHEDULE:
@@ -36,11 +36,11 @@ export default (state = initialState, action) => {
 function saveSchedule(state, action) {
   return {
     ...state,
-    employees: state.employees.map(employee => {
-      if (employee.id === action.payload.id) {
+    rotas: state.rotas.map(rota => {
+      if (rota.id === action.payload.id) {
         return action.payload;
       } else {
-        return employee;
+        return rota;
       }
     })
   };

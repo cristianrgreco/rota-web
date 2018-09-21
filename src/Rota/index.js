@@ -2,7 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { getWeek } from "./week";
 import { fetchRota } from "./actions";
-import { PeriodSelector, RotaEmployee, RotaHeader } from "./components";
+import { PeriodSelector, RotaEntry, RotaHeader } from "./components";
 import "./index.css";
 
 class Rota extends PureComponent {
@@ -25,8 +25,8 @@ class Rota extends PureComponent {
         {this.props.isPeriodSelectorEnabled && <PeriodSelector />}
         <div className="Rota">
           <RotaHeader week={week} />
-          {this.props.employees.map((employee, i) => (
-            <RotaEmployee key={i} employee={employee} />
+          {this.props.rotas.map((rota, i) => (
+            <RotaEntry key={i} rota={rota} />
           ))}
         </div>
       </Fragment>
@@ -36,7 +36,7 @@ class Rota extends PureComponent {
 
 export default connect(
   state => ({
-    employees: state.rota.employees,
+    rotas: state.rota.rotas,
     isPeriodSelectorEnabled: state.rota.periodSelector.enabled
   }),
   dispatch => ({
