@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { RotaRow, RotaCell, RotaEmployeePeriod } from ".";
 
-export function RotaEmployee({ employee, employeeIndex }) {
+export function RotaEmployee({ employee }) {
   const totalHours = calculateTotalHours(employee.schedule);
 
   return (
@@ -13,14 +13,12 @@ export function RotaEmployee({ employee, employeeIndex }) {
         <Fragment key={i}>
           <RotaEmployeePeriod
             employee={employee}
-            employeeIndex={employeeIndex}
             scheduleIndex={i}
             period={am}
             softBorder
           />
           <RotaEmployeePeriod
             employee={employee}
-            employeeIndex={employeeIndex}
             scheduleIndex={i}
             period={pm}
           />

@@ -36,11 +36,13 @@ export default (state = initialState, action) => {
 function saveSchedule(state, action) {
   return {
     ...state,
-    employees: [
-      ...state.employees.slice(0, action.payload),
-      state.periodSelector.employee,
-      ...state.employees.slice(action.payload + 1)
-    ]
+    employees: state.employees.map(employee => {
+      if (employee.id === action.payload.id) {
+        return action.payload;
+      } else {
+        return employee;
+      }
+    })
   };
 }
 
@@ -74,7 +76,6 @@ function showPeriodSelector(state, action) {
       ...state.periodSelector,
       enabled: true,
       employee: action.payload.employee,
-      employeeIndex: action.payload.employeeIndex,
       scheduleIndex: action.payload.scheduleIndex
     }
   };

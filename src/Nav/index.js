@@ -1,7 +1,6 @@
 import React from "react";
-import "./index.css";
-
 import { NavItemDropDown, NavItem, NavItemLabel } from "./components";
+import "./index.css";
 
 export default function Nav() {
   return (

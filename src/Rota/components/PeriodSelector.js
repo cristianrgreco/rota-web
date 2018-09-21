@@ -9,11 +9,10 @@ import "./PeriodSelector.css";
 
 function PeriodSelector({
   employee,
-  employeeIndex,
   scheduleIndex,
   hasModified,
   modifySchedule,
-  savePeriod,
+  saveSchedule,
   hidePeriodSelector
 }) {
   const { date, am, pm } = employee.schedule[scheduleIndex];
@@ -57,7 +56,7 @@ function PeriodSelector({
             (pm && (pm.start === null) ^ (pm.end === null))
           }
           onClick={() => {
-            savePeriod(employeeIndex);
+            saveSchedule(employee);
             hidePeriodSelector();
           }}
         >
@@ -126,12 +125,11 @@ function CustomTimePicker({ label, value, onChange }) {
 export default connect(
   state => ({
     employee: state.rota.periodSelector.employee,
-    employeeIndex: state.rota.periodSelector.employeeIndex,
     scheduleIndex: state.rota.periodSelector.scheduleIndex,
     hasModified: state.rota.periodSelector.hasModified
   }),
   dispatch => ({
-    savePeriod: employeeIndex => dispatch(saveSchedule(employeeIndex)),
+    saveSchedule: employee => dispatch(saveSchedule(employee)),
     modifySchedule: (employee, scheduleIndex, period) =>
       dispatch(modifySchedule(employee, scheduleIndex, period)),
     hidePeriodSelector: () => dispatch(hidePeriodSelector())

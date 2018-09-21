@@ -20,7 +20,7 @@ class Rota extends PureComponent {
         <div className="Rota">
           <RotaHeader week={week} />
           {this.props.employees.map((employee, i) => (
-            <RotaEmployee key={i} employee={employee} employeeIndex={i} />
+            <RotaEmployee key={i} employee={employee} />
           ))}
         </div>
       </Fragment>
