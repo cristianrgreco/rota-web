@@ -1,3 +1,9 @@
+.Controls {
+  display: flex;
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+}
+
 .Employees {
   display: flex;
   flex-direction: column;

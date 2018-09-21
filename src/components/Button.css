@@ -1,13 +1,17 @@
 .Button {
-  color: #333;
-  background-color: #fff;
+  display: flex;
   box-sizing: border-box;
   padding: 8px 20px;
   font-weight: bold;
   text-transform: uppercase;
-  border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.Button {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
 .Button[disabled] {
@@ -17,28 +21,23 @@
 }
 
 .Button.small {
-  padding: 2px 6px;
+  padding: .2rem 1rem;
   box-shadow: none;
   border: none;
   border-radius: 2px;
 }
 
-.Button.secondary {
+.Button.success {
   color: #fff;
-  background-color: #1e7da5;
+  background-color: #247f0c;
 }
 
-.Button[disabled].secondary {
-  color: #ccc;
-  background-color: #1d597d;
+.Button.info {
+  color: #fff;
+  background-color: #1e7da5;
 }
 
 .Button.danger {
   color: #fff;
   background-color: #b20000;
-}
-
-.Button[disabled].danger {
-  color: #ccc;
-  background-color: #8a0000;
 }

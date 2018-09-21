@@ -6,14 +6,16 @@ export function Button({
   children,
   onClick,
   small = false,
-  secondary = false,
+  success = false,
+  info = false,
   danger = false,
   disabled = false
 }) {
   const className = classNames({
     Button: true,
     small,
-    secondary,
+    success,
+    info,
     danger
   });
 
