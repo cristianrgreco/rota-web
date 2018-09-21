@@ -20,18 +20,19 @@
   height: 35px;
 }
 
+.PeriodSelectorHeader-controls {
+  height: 100%;
+}
+
 .CloseButton-wrapper {
   width: 50px;
-  height: 35px;
+  height: 100%;
 }
 
 .PeriodSelectorHeader-description {
   flex: 1;
   margin-left: 10px;
   text-transform: uppercase;
-}
-
-.PeriodSelectorHeader-controls {
 }
 
 .PeriodSelector {

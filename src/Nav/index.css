@@ -10,9 +10,10 @@
 .NavItem {
   position: relative;
   display: flex;
+  flex: 1;
   justify-content: center;
   box-sizing: border-box;
-  padding: 1rem 3rem;
+  padding: 8px 20px;
   border-right: 1px solid #222;
   color: #ddd;
   background-color: #111;
@@ -39,8 +40,8 @@
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  left: -1px;
+  width: calc(100% + 1px);
 }
 
 .NavItemDropDown .NavItem {
