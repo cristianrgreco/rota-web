@@ -9,12 +9,9 @@
   position: relative;
   display: flex;
   flex: 1;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 8px 20px;
-  border-right: 1px solid #333;
   color: #ddd;
   background-color: #111;
+  border-right: 1px solid #333;
 }
 
 .NavItem a {
@@ -35,9 +32,20 @@
   border-left: 1px solid #333;
 }
 
-.NavItemLabel {
+.NavItemText, .NavItemLink {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 8px 20px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.NavItemLink a {
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }
 
 .NavItemDropDown {

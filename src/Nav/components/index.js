@@ -1,3 +1,4 @@
-export * from './NavItem';
-export * from './NavItemLabel';
-export * from './NavItemDropDown';
+export * from "./NavItem";
+export * from "./NavItemLink";
+export * from "./NavItemText";
+export * from "./NavItemDropDown";
