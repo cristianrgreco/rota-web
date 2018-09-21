@@ -1,11 +1,3 @@
-:root {
-  --background-colour: #fff;
-  --background-color-invert: #eee;
-  --border-colour: #ddd;
-  --border-width: 1px;
-  --colour-invert: #333;
-}
-
 .Rota {
   display: flex;
   flex-direction: column;
@@ -14,8 +6,12 @@
 .Rota-row {
   display: flex;
   flex-direction: row;
-  background-color: var(--background-colour);
-  border-bottom: var(--border-width) solid var(--border-colour);
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.Rota-row:first-child {
+  border-top: 1px solid #ddd;
 }
 
 .Rota-cell {
@@ -25,7 +21,7 @@
   flex-basis: 40px;
   padding: 10px 0;
   text-align: center;
-  border-right: var(--border-width) solid var(--border-colour);
+  border-right: 1px solid #ddd;
 }
 
 .Rota-cell.wide {
@@ -35,7 +31,7 @@
 }
 
 .Rota-cell.soft-border {
-  border-right: var(--border-width) dashed var(--border-colour);
+  border-right: 1px dashed #ddd;
 }
 
 .header {
@@ -44,6 +40,6 @@
 }
 
 .invert {
-  background-color: var(--background-color-invert);
-  color: var(--colour-invert);
+  background-color: #eee;
+  color: #333;
 }
