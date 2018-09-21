@@ -1,3 +1,9 @@
+.Controls {
+  display: flex;
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+}
+
 .Rota {
   display: flex;
   flex-direction: column;

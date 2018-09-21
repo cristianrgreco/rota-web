@@ -12,6 +12,7 @@
 .EmployeeRow {
   display: flex;
   flex-direction: row;
+  flex-basis: 3rem;
   border-bottom: 1px solid #ddd;
 }
 
@@ -38,5 +39,5 @@
 }
 
 .ButtonSeparator {
-  width: 4px;
+  width: .2rem;
 }

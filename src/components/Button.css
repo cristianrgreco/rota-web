@@ -25,6 +25,8 @@
   box-shadow: none;
   border: none;
   border-radius: 2px;
+  width: 4rem;
+  justify-content: center;
 }
 
 .Button.success {

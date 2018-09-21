@@ -4,6 +4,7 @@ import { getWeek } from "./week";
 import { fetchRota } from "./actions";
 import { PeriodSelector, RotaEntry, RotaHeader } from "./components";
 import "./index.css";
+import { Button } from "../components";
 
 class Rota extends PureComponent {
   componentDidMount() {
@@ -17,6 +18,11 @@ class Rota extends PureComponent {
     return (
       <Fragment>
         {this.props.isPeriodSelectorEnabled && <PeriodSelector />}
+        <div className="Controls">
+          <Button small success>
+            Save
+          </Button>
+        </div>
         <div className="Rota">
           <RotaHeader week={week} />
           {this.props.rotas.map((rota, i) => (
