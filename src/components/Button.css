@@ -15,3 +15,30 @@
   background-color: #eee;
   box-shadow: none;
 }
+
+.Button.small {
+  padding: 2px 6px;
+  box-shadow: none;
+  border: none;
+  border-radius: 2px;
+}
+
+.Button.secondary {
+  color: #fff;
+  background-color: #1e7da5;
+}
+
+.Button[disabled].secondary {
+  color: #ccc;
+  background-color: #1d597d;
+}
+
+.Button.danger {
+  color: #fff;
+  background-color: #b20000;
+}
+
+.Button[disabled].danger {
+  color: #ccc;
+  background-color: #8a0000;
+}
