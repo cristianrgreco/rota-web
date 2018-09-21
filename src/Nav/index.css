@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ddd;
-  background-color: #111;
   border-bottom: 1px solid #333;
 }
 
