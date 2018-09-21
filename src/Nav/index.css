@@ -10,7 +10,7 @@
   display: flex;
   flex: 1;
   color: #ddd;
-  background-color: #111;
+  background-color: #222;
   border-right: 1px solid #333;
 }
 
@@ -21,7 +21,7 @@
 
 .NavItem:hover {
   color: #fff;
-  background-color: #222;
+  background-color: #111;
 }
 
 .NavItem:hover .NavItemDropDown {
