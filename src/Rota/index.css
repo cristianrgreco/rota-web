@@ -24,6 +24,10 @@
   border-right: 1px solid #ddd;
 }
 
+.Rota-cell:first-child {
+  border-left: 1px solid #ddd;
+}
+
 .Rota-cell.wide {
   flex-grow: 2;
   flex-shrink: 1;
