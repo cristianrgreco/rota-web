@@ -1,13 +1,19 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { getWeek } from "./week";
-import { fetchEmployees } from "./actions";
-import { RotaHeader, RotaEmployee, PeriodSelector } from "./components";
+import { fetchRota } from "./actions";
+import { PeriodSelector, RotaEmployee, RotaHeader } from "./components";
 import "./index.css";
 
 class Rota extends PureComponent {
   componentDidMount() {
-    this.props.fetchEmployees();
+    this.props.fetchRota(this.props.match.params.rota);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.params.rota !== newProps.match.params.rota) {
+      this.props.fetchRota(newProps.match.params.rota);
+    }
   }
 
   render() {
@@ -34,6 +40,6 @@ export default connect(
     isPeriodSelectorEnabled: state.rota.periodSelector.enabled
   }),
   dispatch => ({
-    fetchEmployees: () => dispatch(fetchEmployees())
+    fetchRota: rotaName => dispatch(fetchRota(rotaName))
   })
 )(Rota);

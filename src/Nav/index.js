@@ -12,12 +12,12 @@ export default function Nav() {
           <NavItemDropDown>
             <NavItem>
               <NavItemLabel>
-                <Link to="/rotas">Porters</Link>
+                <Link to="/rotas/porters">Porters</Link>
               </NavItemLabel>
             </NavItem>
             <NavItem>
               <NavItemLabel>
-                <Link to="/rotas">Kitchen</Link>
+                <Link to="/rotas/kitchen">Kitchen</Link>
               </NavItemLabel>
             </NavItem>
           </NavItemDropDown>

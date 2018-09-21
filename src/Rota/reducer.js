@@ -1,5 +1,5 @@
 import {
-  FETCH_EMPLOYEES_COMPLETE,
+  FETCH_ROTA_COMPLETE,
   SAVE_SCHEDULE,
   MODIFY_SCHEDULE,
   HIDE_PERIOD_SELECTOR,
@@ -18,7 +18,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_EMPLOYEES_COMPLETE:
+    case FETCH_ROTA_COMPLETE:
       return { ...state, employees: action.payload };
     case SAVE_SCHEDULE:
       return saveSchedule(state, action);

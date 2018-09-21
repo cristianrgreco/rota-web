@@ -9,7 +9,7 @@ export default function App() {
     <Router>
       <Fragment>
         <Nav />
-        <Route exact path="/rotas" component={Rota}/>
+        <Route exact path="/rotas/:rota" component={Rota}/>
         <Route exact path="/employees" component={Employee}/>
       </Fragment>
     </Router>
