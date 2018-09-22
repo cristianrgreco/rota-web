@@ -6,6 +6,7 @@ import "./index.css";
 
 import {
   fetchEmployees,
+  saveNewEmployee,
   showNewEmployeeModal,
   hideNewEmployeeModal
 } from "./actions";
@@ -19,7 +20,10 @@ class Employees extends PureComponent {
     return (
       <Fragment>
         {this.props.isNewEmployeeModalVisible && (
-          <NewEmployeeModal onClose={this.props.hideNewEmployeeModal} />
+          <NewEmployeeModal
+            onSubmit={this.props.saveNewEmployee}
+            onClose={this.props.hideNewEmployeeModal}
+          />
         )}
         <div className="Controls">
           <Button success onClick={this.props.showNewEmployeeModal}>
@@ -56,6 +60,7 @@ export default connect(
   }),
   dispatch => ({
     fetchEmployees: () => dispatch(fetchEmployees()),
+    saveNewEmployee: employee => dispatch(saveNewEmployee(employee)),
     showNewEmployeeModal: () => dispatch(showNewEmployeeModal()),
     hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal())
   })

@@ -24,6 +24,12 @@ function fetchEmployeesComplete(employees) {
   };
 }
 
+export function saveNewEmployee(employee) {
+  return async dispatch => {
+    console.log(employee);
+  };
+}
+
 export function showNewEmployeeModal() {
   return {
     type: SHOW_NEW_EMPLOYEE_MODAL
