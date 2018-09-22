@@ -29,26 +29,26 @@ function fetchEmployeesComplete(employees) {
   };
 }
 
-export function saveNewEmployee(employee) {
+export function addEmployee(employee) {
   return async dispatch => {
-    dispatch(saveNewEmployeeComplete(employee));
+    dispatch(addEmployeeComplete(employee));
   };
 }
 
-function saveNewEmployeeComplete(employee) {
+function addEmployeeComplete(employee) {
   return {
     type: ADD_EMPLOYEE_COMPLETE,
     payload: employee
   };
 }
 
-export function showNewEmployeeModal() {
+export function showAddEmployeeModal() {
   return {
     type: SHOW_ADD_EMPLOYEE_MODAL
   };
 }
 
-export function hideNewEmployeeModal() {
+export function hideAddEmployeeModal() {
   return {
     type: HIDE_ADD_EMPLOYEE_MODAL
   };

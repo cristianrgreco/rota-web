@@ -6,9 +6,9 @@ import "./index.css";
 
 import {
   fetchEmployees,
-  saveNewEmployee,
-  showNewEmployeeModal,
-  hideNewEmployeeModal,
+  addEmployee,
+  showAddEmployeeModal,
+  hideAddEmployeeModal,
   editEmployee,
   showEditEmployeeModal,
   hideEditEmployeeModal,
@@ -23,13 +23,13 @@ class Employees extends PureComponent {
   render() {
     return (
       <Fragment>
-        {this.props.isNewEmployeeModalVisible && (
+        {this.props.isAddEmployeeModalVisible && (
           <NewEmployeeModal
             onSubmit={employee => {
-              this.props.saveNewEmployee(employee);
-              this.props.hideNewEmployeeModal();
+              this.props.addEmployee(employee);
+              this.props.hideAddEmployeeModal();
             }}
-            onClose={this.props.hideNewEmployeeModal}
+            onClose={this.props.hideAddEmployeeModal}
           />
         )}
         {this.props.isEditEmployeeModalVisible && (
@@ -43,7 +43,7 @@ class Employees extends PureComponent {
           />
         )}
         <div className="Controls">
-          <Button success onClick={this.props.showNewEmployeeModal}>
+          <Button success onClick={this.props.showAddEmployeeModal}>
             Add
           </Button>
         </div>
@@ -84,14 +84,14 @@ export default connect(
   state => ({
     employees: state.employees.employees,
     employeeToEdit: state.employees.employeeToEdit,
-    isNewEmployeeModalVisible: state.employees.isNewEmployeeModalVisible,
+    isAddEmployeeModalVisible: state.employees.isAddEmployeeModalVisible,
     isEditEmployeeModalVisible: state.employees.isEditEmployeeModalVisible
   }),
   dispatch => ({
     fetchEmployees: () => dispatch(fetchEmployees()),
-    saveNewEmployee: employee => dispatch(saveNewEmployee(employee)),
-    showNewEmployeeModal: () => dispatch(showNewEmployeeModal()),
-    hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal()),
+    addEmployee: employee => dispatch(addEmployee(employee)),
+    showAddEmployeeModal: () => dispatch(showAddEmployeeModal()),
+    hideAddEmployeeModal: () => dispatch(hideAddEmployeeModal()),
     editEmployee: employee => dispatch(editEmployee(employee)),
     showEditEmployeeModal: employee =>
       dispatch(showEditEmployeeModal(employee)),

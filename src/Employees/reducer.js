@@ -12,7 +12,7 @@ import {
 const initialState = {
   employees: [],
   employeeToEdit: null,
-  isNewEmployeeModalVisible: false,
+  isAddEmployeeModalVisible: false,
   isEditEmployeeModalVisible: false
 };
 
@@ -23,9 +23,9 @@ export default (state = initialState, action) => {
     case ADD_EMPLOYEE_COMPLETE:
       return { ...state, employees: [...state.employees, action.payload] };
     case SHOW_ADD_EMPLOYEE_MODAL:
-      return { ...state, isNewEmployeeModalVisible: true };
+      return { ...state, isAddEmployeeModalVisible: true };
     case HIDE_ADD_EMPLOYEE_MODAL:
-      return { ...state, isNewEmployeeModalVisible: false };
+      return { ...state, isAddEmployeeModalVisible: false };
     case EDIT_EMPLOYEE_COMPLETE:
       return {
         ...state,
