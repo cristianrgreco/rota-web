@@ -1,6 +1,5 @@
 .Controls {
   display: flex;
-  height: 3rem;
   box-sizing: border-box;
   padding: .5rem;
 }
