@@ -1,7 +1,7 @@
 import React from "react";
 import "./Input.css";
 
-export function Input({ name, type, value, onChange, autoFocus = false }) {
+export function Input({ name, type, value, onChange }) {
   return (
     <input
       className="Input"
@@ -9,7 +9,6 @@ export function Input({ name, type, value, onChange, autoFocus = false }) {
       type={type}
       value={value}
       onChange={onChange}
-      autoFocus={autoFocus}
     />
   );
 }

@@ -20,7 +20,7 @@ export class EditScheduleModal extends Component {
     },
     pm: {
       start: this.props.schedule.scheduleEntry.pm.start,
-      end: this.props.schedule.scheduleEntry.pm.start
+      end: this.props.schedule.scheduleEntry.pm.end
     }
   };
 
@@ -40,53 +40,17 @@ export class EditScheduleModal extends Component {
         <ModalContent>
           <Form onSubmit={() => onSubmit()}>
             <div className="FormFieldSetsWrapper">
-              <FormFieldSet legend="Morning">
-                <FormRecord
-                  name="Start"
-                  type="text"
-                  value={am.start}
-                  onChange={e =>
-                    this.setState({
-                      am: { start: e.target.value, end: am.end }
-                    })
-                  }
-                  autoFocus
-                />
-                <FormRecord
-                  name="End"
-                  type="text"
-                  value={am.end}
-                  onChange={e =>
-                    this.setState({
-                      am: { start: am.start, end: e.target.value }
-                    })
-                  }
-                />
-              </FormFieldSet>
-              <div className="FormFieldSetSeparator" />
-              <FormFieldSet legend="Afternoon">
-                <FormRecord
-                  name="Start"
-                  type="text"
-                  value={pm.start}
-                  onChange={e =>
-                    this.setState({
-                      pm: { start: e.target.value, end: pm.end }
-                    })
-                  }
-                  autoFocus
-                />
-                <FormRecord
-                  name="End"
-                  type="text"
-                  value={pm.end}
-                  onChange={e =>
-                    this.setState({
-                      pm: { start: pm.start, end: e.target.value }
-                    })
-                  }
-                />
-              </FormFieldSet>
+              <EditPeriodForm
+                legend="Morning"
+                period={am}
+                onChange={am => this.setState({ am })}
+              />
+              <div className="PeriodFormSeparator" />
+              <EditPeriodForm
+                legend="Afternoon"
+                period={pm}
+                onChange={pm => this.setState({ pm })}
+              />
             </div>
             <FormControls>
               <Button success>Save</Button>
@@ -96,4 +60,23 @@ export class EditScheduleModal extends Component {
       </Modal>
     );
   }
+}
+
+function EditPeriodForm({ legend, period, onChange }) {
+  return (
+    <FormFieldSet legend={legend}>
+      <FormRecord
+        name="Start"
+        type="text"
+        value={period.start || ""}
+        onChange={e => onChange({ start: e.target.value, end: period.end })}
+      />
+      <FormRecord
+        name="End"
+        type="text"
+        value={period.end || ""}
+        onChange={e => onChange({ start: period.start, end: e.target.value })}
+      />
+    </FormFieldSet>
+  );
 }

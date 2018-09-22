@@ -30,7 +30,6 @@ export class AddEmployeeModal extends Component {
               type="text"
               value={name}
               onChange={e => this.setState({ name: e.target.value })}
-              autoFocus
             />
             <FormRecord
               name="Phone"
