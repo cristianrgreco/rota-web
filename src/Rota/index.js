@@ -87,7 +87,9 @@ class Rota extends PureComponent {
                     </div>
                   </Cell>
                 ))}
-                <Cell centered>{calculateTotalRotaEntryHours(rotaEntry)}</Cell>
+                <Cell header centered>
+                  {calculateTotalRotaEntryHours(rotaEntry)}
+                </Cell>
               </Row>
             ))}
           </Table>
