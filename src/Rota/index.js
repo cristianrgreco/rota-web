@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { EditScheduleModal } from "./components";
 import { Button, Table, Row, Cell } from "../components";
+import { formatSchedulePeriod } from "./formatter";
 import { getWeek } from "./week";
 import "./index.css";
 
@@ -16,18 +17,6 @@ import {
 class Rota extends PureComponent {
   componentDidMount() {
     this.props.fetchRota();
-  }
-
-  formatTime(time) {
-    return time > 12 ? time - 12 : time;
-  }
-
-  formatScheduleEntryPeriod(period) {
-    if (!period.start || !period.end) {
-      return "";
-    } else {
-      return `${this.formatTime(period.start)}-${this.formatTime(period.end)}`;
-    }
   }
 
   render() {
@@ -88,11 +77,11 @@ class Rota extends PureComponent {
                   >
                     <div className="CellSplit">
                       <span className="CellSplitItem">
-                        {this.formatScheduleEntryPeriod(scheduleEntry.am)}
+                        {formatSchedulePeriod(scheduleEntry.am)}
                       </span>
                       <span className="CellSplitItem separator" />
                       <span className="CellSplitItem">
-                        {this.formatScheduleEntryPeriod(scheduleEntry.pm)}
+                        {formatSchedulePeriod(scheduleEntry.pm)}
                       </span>
                     </div>
                   </Cell>
