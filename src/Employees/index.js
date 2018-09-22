@@ -48,7 +48,7 @@ class Employees extends PureComponent {
           </Button>
         </div>
         <div className="Employees">
-          <div className="EmployeeRow header invert">
+          <div className="EmployeeRow header">
             <div className="EmployeeCell">Name</div>
             <div className="EmployeeCell">Phone</div>
             <div className="EmployeeCell" />

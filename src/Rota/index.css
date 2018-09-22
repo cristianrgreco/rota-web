@@ -43,13 +43,3 @@
 .Rota-cell.soft-border {
   border-right: 1px dashed #ddd;
 }
-
-.header {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.invert {
-  background-color: #eee;
-  color: #333;
-}
