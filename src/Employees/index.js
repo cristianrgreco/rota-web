@@ -43,7 +43,7 @@ class Employees extends PureComponent {
           />
         )}
         <div className="Controls">
-          <Button success onClick={this.props.showAddEmployeeModal}>
+          <Button small success onClick={this.props.showAddEmployeeModal}>
             Add
           </Button>
         </div>
@@ -59,6 +59,7 @@ class Employees extends PureComponent {
               <Cell>{employee.phone}</Cell>
               <Cell centered>
                 <Button
+                  small
                   info
                   onClick={() => this.props.showEditEmployeeModal(employee)}
                 >
@@ -66,6 +67,7 @@ class Employees extends PureComponent {
                 </Button>
                 <div className="ButtonSeparator" />
                 <Button
+                  small
                   danger
                   onClick={() => this.props.deleteEmployee(employee.id)}
                 >

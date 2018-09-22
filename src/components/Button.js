@@ -5,6 +5,7 @@ import "./Button.css";
 export function Button({
   children,
   onClick,
+  small = false,
   success = false,
   info = false,
   danger = false,
@@ -12,6 +13,7 @@ export function Button({
 }) {
   const className = classNames({
     Button: true,
+    small,
     success,
     info,
     danger

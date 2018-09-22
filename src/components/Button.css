@@ -1,12 +1,17 @@
 .Button {
   display: flex;
+  height: 3rem;
   flex-basis: 5rem;
   justify-content: center;
   box-sizing: border-box;
-  padding: .5rem 1rem;
   border: none;
   border-radius: .2rem;
   text-transform: uppercase;
+}
+
+.Button.small {
+  height: 2rem;
+  flex-basis: 4rem;
 }
 
 .Button.success {

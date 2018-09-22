@@ -1,8 +1,8 @@
 .ModalWrapper {
   position: fixed;
-  top: 3.25rem;
+  top: 3rem;
   width: 100%;
-  height: calc(100% - 3.25rem);
+  height: calc(100% - 3rem);
   background-color: rgba(0, 0, 0, .5);
   box-sizing: border-box;
   padding: 1rem;
