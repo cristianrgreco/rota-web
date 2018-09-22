@@ -2,6 +2,7 @@ import moment from "moment";
 
 import {
   FETCH_ROTA_COMPLETE,
+  SAVE_ROTA_COMPLETE,
   EDIT_SCHEDULE,
   SHOW_EDIT_SCHEDULE_MODAL,
   HIDE_EDIT_SCHEDULE_MODAL
@@ -116,6 +117,18 @@ function fetchRotaComplete(rota) {
   return {
     type: FETCH_ROTA_COMPLETE,
     payload: rota
+  };
+}
+
+export function saveRota(rota) {
+  return async dispatch => {
+    dispatch(saveRotaComplete());
+  };
+}
+
+function saveRotaComplete() {
+  return {
+    type: SAVE_ROTA_COMPLETE
   };
 }
 

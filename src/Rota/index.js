@@ -7,6 +7,7 @@ import "./index.css";
 
 import {
   fetchRota,
+  saveRota,
   editSchedule,
   showEditScheduleModal,
   hideEditScheduleModal
@@ -47,7 +48,12 @@ class Rota extends PureComponent {
         )}
         <div className="Rota">
           <div className="Controls">
-            <Button small success disabled={!this.props.hasMadeChanges}>
+            <Button
+              small
+              success
+              disabled={!this.props.hasMadeChanges}
+              onClick={this.props.saveRota}
+            >
               Save
             </Button>
           </div>
@@ -110,6 +116,7 @@ export default connect(
   }),
   dispatch => ({
     fetchRota: () => dispatch(fetchRota()),
+    saveRota: rota => dispatch(saveRota(rota)),
     editSchedule: ({ rotaId, scheduleEntry }) =>
       dispatch(editSchedule(rotaId, scheduleEntry)),
     showEditScheduleModal: (rotaId, name, scheduleEntry) =>

@@ -1,5 +1,6 @@
 import {
   FETCH_ROTA_COMPLETE,
+  SAVE_ROTA_COMPLETE,
   EDIT_SCHEDULE,
   SHOW_EDIT_SCHEDULE_MODAL,
   HIDE_EDIT_SCHEDULE_MODAL
@@ -16,6 +17,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ROTA_COMPLETE:
       return { ...state, rota: action.payload };
+    case SAVE_ROTA_COMPLETE:
+      return { ...state, hasMadeChanges: false };
     case EDIT_SCHEDULE:
       return {
         ...state,
