@@ -2,11 +2,11 @@ import {
   DELETE_EMPLOYEE_COMPLETE,
   FETCH_EMPLOYEES_COMPLETE,
   HIDE_EDIT_EMPLOYEE_MODAL,
-  HIDE_NEW_EMPLOYEE_MODAL,
-  SAVE_NEW_EMPLOYEE_COMPLETE,
+  HIDE_ADD_EMPLOYEE_MODAL,
+  ADD_EMPLOYEE_COMPLETE,
   EDIT_EMPLOYEE_COMPLETE,
   SHOW_EDIT_EMPLOYEE_MODAL,
-  SHOW_NEW_EMPLOYEE_MODAL
+  SHOW_ADD_EMPLOYEE_MODAL
 } from "./constants";
 
 const initialState = {
@@ -20,11 +20,11 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_EMPLOYEES_COMPLETE:
       return { ...state, employees: action.payload };
-    case SAVE_NEW_EMPLOYEE_COMPLETE:
+    case ADD_EMPLOYEE_COMPLETE:
       return { ...state, employees: [...state.employees, action.payload] };
-    case SHOW_NEW_EMPLOYEE_MODAL:
+    case SHOW_ADD_EMPLOYEE_MODAL:
       return { ...state, isNewEmployeeModalVisible: true };
-    case HIDE_NEW_EMPLOYEE_MODAL:
+    case HIDE_ADD_EMPLOYEE_MODAL:
       return { ...state, isNewEmployeeModalVisible: false };
     case EDIT_EMPLOYEE_COMPLETE:
       return {

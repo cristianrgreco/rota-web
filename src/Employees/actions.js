@@ -1,8 +1,8 @@
 import {
   FETCH_EMPLOYEES_COMPLETE,
-  SAVE_NEW_EMPLOYEE_COMPLETE,
-  SHOW_NEW_EMPLOYEE_MODAL,
-  HIDE_NEW_EMPLOYEE_MODAL,
+  ADD_EMPLOYEE_COMPLETE,
+  SHOW_ADD_EMPLOYEE_MODAL,
+  HIDE_ADD_EMPLOYEE_MODAL,
   EDIT_EMPLOYEE_COMPLETE,
   SHOW_EDIT_EMPLOYEE_MODAL,
   HIDE_EDIT_EMPLOYEE_MODAL,
@@ -37,20 +37,20 @@ export function saveNewEmployee(employee) {
 
 function saveNewEmployeeComplete(employee) {
   return {
-    type: SAVE_NEW_EMPLOYEE_COMPLETE,
+    type: ADD_EMPLOYEE_COMPLETE,
     payload: employee
   };
 }
 
 export function showNewEmployeeModal() {
   return {
-    type: SHOW_NEW_EMPLOYEE_MODAL
+    type: SHOW_ADD_EMPLOYEE_MODAL
   };
 }
 
 export function hideNewEmployeeModal() {
   return {
-    type: HIDE_NEW_EMPLOYEE_MODAL
+    type: HIDE_ADD_EMPLOYEE_MODAL
   };
 }
 
