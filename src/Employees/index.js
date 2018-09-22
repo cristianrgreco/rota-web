@@ -22,7 +22,7 @@ class Employees extends PureComponent {
           <NewEmployeeModal onClose={this.props.hideNewEmployeeModal} />
         )}
         <div className="Controls">
-          <Button small success onClick={this.props.showNewEmployeeModal}>
+          <Button success onClick={this.props.showNewEmployeeModal}>
             Add
           </Button>
         </div>
@@ -37,13 +37,9 @@ class Employees extends PureComponent {
               <div className="EmployeeCell">{employee.name}</div>
               <div className="EmployeeCell">{employee.phone}</div>
               <div className="EmployeeCell centered">
-                <Button small info>
-                  Edit
-                </Button>
+                <Button info>Edit</Button>
                 <div className="ButtonSeparator" />
-                <Button small danger>
-                  Delete
-                </Button>
+                <Button danger>Delete</Button>
               </div>
             </div>
           ))}

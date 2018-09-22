@@ -19,9 +19,7 @@ class Rota extends PureComponent {
       <Fragment>
         {this.props.isPeriodSelectorEnabled && <PeriodSelector />}
         <div className="Controls">
-          <Button small success>
-            Save
-          </Button>
+          <Button success>Save</Button>
         </div>
         <div className="Rota">
           <RotaHeader week={week} />
