@@ -1,0 +1,19 @@
+.ModalHeader {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.ModalHeaderTitle {
+  flex: 1;
+}
+
+.ModalHeaderControls {
+
+}

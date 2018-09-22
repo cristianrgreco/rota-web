@@ -1,0 +1,9 @@
+.ModalHeaderButton {
+  display: flex;
+  box-sizing: border-box;
+  padding: .1rem;
+}
+
+.ModalHeaderButton.danger {
+  color: #b20000;
+}

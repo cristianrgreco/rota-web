@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { fetchEmployees } from "./actions";
 import { Button } from "../components";
+import { NewEmployeeModal } from "./components";
 import "./index.css";
 
 class Employees extends PureComponent {
@@ -12,6 +13,7 @@ class Employees extends PureComponent {
   render() {
     return (
       <Fragment>
+        <NewEmployeeModal />
         <div className="Controls">
           <Button small success>
             Add
