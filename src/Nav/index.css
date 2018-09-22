@@ -19,15 +19,6 @@
   text-decoration: none;
 }
 
-.NavItem:hover {
-  color: #fff;
-  background-color: #111;
-}
-
-.NavItem:hover .NavItemDropDown {
-  display: block;
-}
-
 .NavItem:first-child {
   border-left: 1px solid #333;
 }
@@ -41,6 +32,19 @@
   box-sizing: border-box;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.NavItemText.active,
+.NavItemText:hover,
+.NavItemLink.active,
+.NavItemLink:hover{
+  color: #fff;
+  background-color: #111;
+}
+
+.NavItemText:hover .NavItemDropDown,
+.NavItemLink:hover .NavItemDropDown {
+  display: block;
 }
 
 .NavItemLink a {
