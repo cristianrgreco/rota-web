@@ -1,5 +1,6 @@
 .ModalWrapper {
   position: fixed;
+  z-index: 5;
   top: 3rem;
   width: 100%;
   height: calc(100% - 3rem);

@@ -6,6 +6,7 @@ export function Cell({
   wide = false,
   header = false,
   centered = false,
+  onClick = () => {},
   children
 }) {
   const className = classNames({
@@ -15,5 +16,9 @@ export function Cell({
     centered
   });
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} onClick={onClick}>
+      {children}
+    </div>
+  );
 }

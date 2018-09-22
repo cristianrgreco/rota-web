@@ -1,6 +1,10 @@
 import moment from "moment";
 
-import { FETCH_ROTA_COMPLETE } from "./constants";
+import {
+  FETCH_ROTA_COMPLETE,
+  SHOW_EDIT_SCHEDULE_MODAL,
+  HIDE_EDIT_SCHEDULE_MODAL
+} from "./constants";
 
 export function fetchRota() {
   return async dispatch => {
@@ -61,5 +65,18 @@ function fetchRotaComplete(rota) {
   return {
     type: FETCH_ROTA_COMPLETE,
     payload: rota
+  };
+}
+
+export function showEditScheduleModal(rotaId, name, scheduleEntry) {
+  return {
+    type: SHOW_EDIT_SCHEDULE_MODAL,
+    payload: { rotaId, name, scheduleEntry }
+  };
+}
+
+export function hideEditScheduleModal() {
+  return {
+    type: HIDE_EDIT_SCHEDULE_MODAL
   };
 }

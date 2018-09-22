@@ -1,9 +1,15 @@
-import React, { PureComponent } from "react";
+import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
+import { EditScheduleModal } from "./components";
 import { Button, Table, Row, Cell } from "../components";
-import { fetchRota } from "./actions";
 import { getWeek } from "./week";
 import "./index.css";
+
+import {
+  fetchRota,
+  showEditScheduleModal,
+  hideEditScheduleModal
+} from "./actions";
 
 class Rota extends PureComponent {
   componentDidMount() {
@@ -27,55 +33,83 @@ class Rota extends PureComponent {
     const week = getWeek(today);
 
     return (
-      <div className="Rota">
-        <div className="Controls">
-          <Button small success disabled={true}>
-            Save
-          </Button>
-        </div>
-        <Table>
-          <Row header multiLine>
-            <Cell />
-            {week.map((weekDay, i) => (
-              <Cell key={i} wide>
-                <div>{weekDay.format("ddd")}</div>
-                <div>{weekDay.format("DD/MM")}</div>
-              </Cell>
-            ))}
-            <Cell />
-          </Row>
-          {this.props.rota.map((rotaEntry, i) => (
-            <Row key={i}>
-              <Cell header centered>
-                {rotaEntry.name}
-              </Cell>
-              {rotaEntry.schedule.map((scheduleEntry, j) => (
-                <Cell key={j} wide centered>
-                  <div className="CellSplit">
-                    <span className="CellSplitItem">
-                      {this.formatScheduleEntryPeriod(scheduleEntry.am)}
-                    </span>
-                    <span className="CellSplitItem separator" />
-                    <span className="CellSplitItem">
-                      {this.formatScheduleEntryPeriod(scheduleEntry.pm)}
-                    </span>
-                  </div>
+      <Fragment>
+        {this.props.isEditScheduleModalVisible && (
+          <EditScheduleModal
+            schedule={this.props.scheduleToEdit}
+            onSubmit={schedule => {
+              this.props.editSchedule(schedule);
+              this.props.hideEditScheduleModal();
+            }}
+            onClose={this.props.hideEditScheduleModal}
+          />
+        )}
+        <div className="Rota">
+          <div className="Controls">
+            <Button small success disabled={true}>
+              Save
+            </Button>
+          </div>
+          <Table>
+            <Row header multiLine>
+              <Cell />
+              {week.map((weekDay, i) => (
+                <Cell key={i} wide>
+                  <div>{weekDay.format("ddd")}</div>
+                  <div>{weekDay.format("DD/MM")}</div>
                 </Cell>
               ))}
               <Cell />
             </Row>
-          ))}
-        </Table>
-      </div>
+            {this.props.rota.map((rotaEntry, i) => (
+              <Row key={i}>
+                <Cell header centered>
+                  {rotaEntry.name}
+                </Cell>
+                {rotaEntry.schedule.map((scheduleEntry, j) => (
+                  <Cell
+                    key={j}
+                    wide
+                    centered
+                    onClick={() =>
+                      this.props.showEditScheduleModal(
+                        rotaEntry.id,
+                        rotaEntry.name,
+                        scheduleEntry
+                      )
+                    }
+                  >
+                    <div className="CellSplit">
+                      <span className="CellSplitItem">
+                        {this.formatScheduleEntryPeriod(scheduleEntry.am)}
+                      </span>
+                      <span className="CellSplitItem separator" />
+                      <span className="CellSplitItem">
+                        {this.formatScheduleEntryPeriod(scheduleEntry.pm)}
+                      </span>
+                    </div>
+                  </Cell>
+                ))}
+                <Cell />
+              </Row>
+            ))}
+          </Table>
+        </div>
+      </Fragment>
     );
   }
 }
 
 export default connect(
   state => ({
-    rota: state.rota.rota
+    rota: state.rota.rota,
+    scheduleToEdit: state.rota.scheduleToEdit,
+    isEditScheduleModalVisible: state.rota.isEditScheduleModalVisible
   }),
   dispatch => ({
-    fetchRota: () => dispatch(fetchRota())
+    fetchRota: () => dispatch(fetchRota()),
+    showEditScheduleModal: (rotaId, name, scheduleEntry) =>
+      dispatch(showEditScheduleModal(rotaId, name, scheduleEntry)),
+    hideEditScheduleModal: () => dispatch(hideEditScheduleModal())
   })
 )(Rota);
