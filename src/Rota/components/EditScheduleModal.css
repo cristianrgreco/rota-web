@@ -1,0 +1,8 @@
+.FormFieldSetsWrapper {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.FormFieldSetSeparator {
+  width: 1rem;
+}

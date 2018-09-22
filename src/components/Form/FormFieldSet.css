@@ -1,0 +1,11 @@
+.FormFieldSet {
+  box-sizing: border-box;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: .2rem;
+}
+
+.FormFieldSetLegend {
+  font-weight: bold;
+  text-transform: uppercase;
+}

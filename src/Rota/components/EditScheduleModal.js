@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./EditScheduleModal.css";
 
 import {
   Modal,
@@ -6,6 +7,7 @@ import {
   ModalContent,
   Button,
   Form,
+  FormFieldSet,
   FormRecord,
   FormControls
 } from "../../components";
@@ -23,27 +25,69 @@ export class EditScheduleModal extends Component {
   };
 
   render() {
-    const { scheduleToEdit, onClose, onSubmit } = this.props;
+    const { schedule, onClose, onSubmit } = this.props;
     const { am, pm } = this.state;
 
     return (
       <Modal>
-        <ModalHeader onClose={onClose}>Edit Schedule</ModalHeader>
+        <ModalHeader onClose={onClose}>
+          <span>Edit Schedule</span>
+          <span> - </span>
+          <span>
+            {schedule.name} {schedule.scheduleEntry.date.format("ddd DD/MM")}
+          </span>
+        </ModalHeader>
         <ModalContent>
           <Form onSubmit={() => onSubmit()}>
-            <FormRecord
-              name="Name"
-              type="text"
-              value={null}
-              onChange={e => {}}
-              autoFocus
-            />
-            <FormRecord
-              name="Phone"
-              type="text"
-              value={null}
-              onChange={e => {}}
-            />
+            <div className="FormFieldSetsWrapper">
+              <FormFieldSet legend="Morning">
+                <FormRecord
+                  name="Start"
+                  type="text"
+                  value={am.start}
+                  onChange={e =>
+                    this.setState({
+                      am: { start: e.target.value, end: am.end }
+                    })
+                  }
+                  autoFocus
+                />
+                <FormRecord
+                  name="End"
+                  type="text"
+                  value={am.end}
+                  onChange={e =>
+                    this.setState({
+                      am: { start: am.start, end: e.target.value }
+                    })
+                  }
+                />
+              </FormFieldSet>
+              <div className="FormFieldSetSeparator" />
+              <FormFieldSet legend="Afternoon">
+                <FormRecord
+                  name="Start"
+                  type="text"
+                  value={pm.start}
+                  onChange={e =>
+                    this.setState({
+                      pm: { start: e.target.value, end: pm.end }
+                    })
+                  }
+                  autoFocus
+                />
+                <FormRecord
+                  name="End"
+                  type="text"
+                  value={pm.end}
+                  onChange={e =>
+                    this.setState({
+                      pm: { start: pm.start, end: e.target.value }
+                    })
+                  }
+                />
+              </FormFieldSet>
+            </div>
             <FormControls>
               <Button success>Save</Button>
             </FormControls>

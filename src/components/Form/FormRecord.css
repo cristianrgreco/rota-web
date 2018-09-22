@@ -3,3 +3,7 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.FormRecord:last-child {
+  margin-bottom: 0;
+}
