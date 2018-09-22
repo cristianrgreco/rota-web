@@ -1,10 +1,10 @@
 import React from "react";
 import { Modal, ModalHeader, ModalContent } from "../../components";
 
-export function NewEmployeeModal() {
+export function NewEmployeeModal({ onClose }) {
   return (
     <Modal>
-      <ModalHeader>New Employee</ModalHeader>
+      <ModalHeader onClose={onClose}>Add Employee</ModalHeader>
       <ModalContent>Content</ModalContent>
     </Modal>
   );

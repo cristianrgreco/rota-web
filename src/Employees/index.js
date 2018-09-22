@@ -1,9 +1,14 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
-import { fetchEmployees } from "./actions";
 import { Button } from "../components";
 import { NewEmployeeModal } from "./components";
 import "./index.css";
+
+import {
+  fetchEmployees,
+  showNewEmployeeModal,
+  hideNewEmployeeModal
+} from "./actions";
 
 class Employees extends PureComponent {
   componentDidMount() {
@@ -13,9 +18,11 @@ class Employees extends PureComponent {
   render() {
     return (
       <Fragment>
-        <NewEmployeeModal />
+        {this.props.isNewEmployeeModalVisible && (
+          <NewEmployeeModal onClose={this.props.hideNewEmployeeModal} />
+        )}
         <div className="Controls">
-          <Button small success>
+          <Button small success onClick={this.props.showNewEmployeeModal}>
             Add
           </Button>
         </div>
@@ -48,9 +55,12 @@ class Employees extends PureComponent {
 
 export default connect(
   state => ({
-    employees: state.employees
+    employees: state.employees.employees,
+    isNewEmployeeModalVisible: state.employees.isNewEmployeeModalVisible
   }),
   dispatch => ({
-    fetchEmployees: () => dispatch(fetchEmployees())
+    fetchEmployees: () => dispatch(fetchEmployees()),
+    showNewEmployeeModal: () => dispatch(showNewEmployeeModal()),
+    hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal())
   })
 )(Employees);

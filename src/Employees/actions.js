@@ -1,4 +1,8 @@
-import { FETCH_EMPLOYEES_COMPLETE } from "../Rota/constants";
+import {
+  FETCH_EMPLOYEES_COMPLETE,
+  SHOW_NEW_EMPLOYEE_MODAL,
+  HIDE_NEW_EMPLOYEE_MODAL
+} from "../Rota/constants";
 
 export function fetchEmployees() {
   return async dispatch => {
@@ -17,5 +21,17 @@ function fetchEmployeesComplete(employees) {
   return {
     type: FETCH_EMPLOYEES_COMPLETE,
     payload: employees
+  };
+}
+
+export function showNewEmployeeModal() {
+  return {
+    type: SHOW_NEW_EMPLOYEE_MODAL
+  };
+}
+
+export function hideNewEmployeeModal() {
+  return {
+    type: HIDE_NEW_EMPLOYEE_MODAL
   };
 }
