@@ -1,0 +1,18 @@
+.Cell {
+  display: flex;
+  flex: 1;
+  height: 3rem;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+  text-transform: uppercase;
+}
+
+.Cell:first-child {
+  border-left: 1px solid #ddd;
+}
+
+.Cell.centered {
+  justify-content: center;
+}

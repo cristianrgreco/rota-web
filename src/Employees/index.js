@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
-import { Button } from "../components";
+import { Table, Row, Cell, Button } from "../components";
 import { EditEmployeeModal, NewEmployeeModal } from "./components";
 import "./index.css";
 
@@ -47,17 +47,17 @@ class Employees extends PureComponent {
             Add
           </Button>
         </div>
-        <div className="Employees">
-          <div className="EmployeeRow header">
-            <div className="EmployeeCell">Name</div>
-            <div className="EmployeeCell">Phone</div>
-            <div className="EmployeeCell" />
-          </div>
+        <Table>
+          <Row header>
+            <Cell>Name</Cell>
+            <Cell>Phone</Cell>
+            <Cell />
+          </Row>
           {this.props.employees.map((employee, i) => (
-            <div key={i} className="EmployeeRow">
-              <div className="EmployeeCell">{employee.name}</div>
-              <div className="EmployeeCell">{employee.phone}</div>
-              <div className="EmployeeCell centered">
+            <Row key={i}>
+              <Cell>{employee.name}</Cell>
+              <Cell>{employee.phone}</Cell>
+              <Cell centered>
                 <Button
                   info
                   onClick={() => this.props.showEditEmployeeModal(employee)}
@@ -71,10 +71,10 @@ class Employees extends PureComponent {
                 >
                   Delete
                 </Button>
-              </div>
-            </div>
+              </Cell>
+            </Row>
           ))}
-        </div>
+        </Table>
       </Fragment>
     );
   }

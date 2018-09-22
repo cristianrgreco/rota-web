@@ -1,0 +1,16 @@
+.Row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ddd;
+}
+
+.Row:first-child {
+  border-top: 1px solid #ddd;
+}
+
+.Row.header {
+  color: #333;
+  background-color: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+}
