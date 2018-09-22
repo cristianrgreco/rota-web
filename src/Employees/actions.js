@@ -1,8 +1,9 @@
 import {
   FETCH_EMPLOYEES_COMPLETE,
+  SAVE_NEW_EMPLOYEE_COMPLETE,
   SHOW_NEW_EMPLOYEE_MODAL,
   HIDE_NEW_EMPLOYEE_MODAL
-} from "../Rota/constants";
+} from "./constants";
 
 export function fetchEmployees() {
   return async dispatch => {
@@ -26,7 +27,14 @@ function fetchEmployeesComplete(employees) {
 
 export function saveNewEmployee(employee) {
   return async dispatch => {
-    console.log(employee);
+    dispatch(saveNewEmployeeComplete(employee));
+  };
+}
+
+function saveNewEmployeeComplete(employee) {
+  return {
+    type: SAVE_NEW_EMPLOYEE_COMPLETE,
+    payload: employee
   };
 }
 

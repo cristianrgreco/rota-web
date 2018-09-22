@@ -21,7 +21,10 @@ class Employees extends PureComponent {
       <Fragment>
         {this.props.isNewEmployeeModalVisible && (
           <NewEmployeeModal
-            onSubmit={this.props.saveNewEmployee}
+            onSubmit={employee => {
+              this.props.saveNewEmployee(employee);
+              this.props.hideNewEmployeeModal();
+            }}
             onClose={this.props.hideNewEmployeeModal}
           />
         )}
