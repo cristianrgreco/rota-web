@@ -9,6 +9,10 @@
   text-transform: uppercase;
 }
 
+.Button[disabled] {
+  opacity: .65;
+}
+
 .Button.small {
   height: 2rem;
   flex-basis: 4rem;

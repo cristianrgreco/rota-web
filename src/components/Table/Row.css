@@ -14,3 +14,9 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+
+.Row.multiLine .Cell {
+  height: auto;
+  min-height: 3rem;
+  flex-direction: column;
+}

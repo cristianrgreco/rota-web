@@ -1,45 +1,31 @@
+.Rota {
+  font-size: 1.5vw;
+}
+
 .Controls {
   display: flex;
+  height: 3rem;
+  align-items: center;
   box-sizing: border-box;
-  padding: .5rem 1rem;
+  padding: 0 .5rem;
 }
 
-.Rota {
+.CellSplit {
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  justify-content: center;
 }
 
-.Rota-row {
+.CellSplitItem {
   display: flex;
-  flex-direction: row;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  flex: 1;
+  justify-content: center;
 }
 
-.Rota-row:first-child {
-  border-top: 1px solid #ddd;
-}
-
-.Rota-cell {
-  box-sizing: border-box;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 40px;
-  padding: 10px 0;
-  text-align: center;
-  border-right: 1px solid #ddd;
-}
-
-.Rota-cell:first-child {
-  border-left: 1px solid #ddd;
-}
-
-.Rota-cell.wide {
-  flex-grow: 2;
-  flex-shrink: 1;
-  flex-basis: 80px;
-}
-
-.Rota-cell.soft-border {
-  border-right: 1px dashed #ddd;
+.CellSplitItem.separator::after {
+  content: ' ';
+  display: block;
+  height: 100%;
+  width: 1px;
+  background-color: #ddd;
 }

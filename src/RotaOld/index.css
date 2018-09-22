@@ -1,0 +1,45 @@
+.Controls {
+  display: flex;
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+}
+
+.Rota {
+  display: flex;
+  flex-direction: column;
+}
+
+.Rota-row {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.Rota-row:first-child {
+  border-top: 1px solid #ddd;
+}
+
+.Rota-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 40px;
+  padding: 10px 0;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+.Rota-cell:first-child {
+  border-left: 1px solid #ddd;
+}
+
+.Rota-cell.wide {
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 80px;
+}
+
+.Rota-cell.soft-border {
+  border-right: 1px dashed #ddd;
+}

@@ -1,8 +1,8 @@
 .Controls {
   display: flex;
-  box-sizing: border-box;
   height: 3rem;
   align-items: center;
+  box-sizing: border-box;
   padding: 0 .5rem;
 }
 

@@ -13,6 +13,14 @@
   border-left: 1px solid #ddd;
 }
 
+.Cell.wide {
+  flex: 2;
+}
+
+.Cell.header {
+  font-weight: bold;
+}
+
 .Cell.centered {
   justify-content: center;
 }

@@ -1,6 +1,12 @@
 import moment from "moment";
 
-import { FETCH_ROTA_COMPLETE } from "./constants";
+import {
+  FETCH_ROTA_COMPLETE,
+  SAVE_SCHEDULE,
+  MODIFY_SCHEDULE,
+  SHOW_PERIOD_SELECTOR,
+  HIDE_PERIOD_SELECTOR
+} from "./constants";
 
 export function fetchRota() {
   return async dispatch => {
@@ -57,9 +63,36 @@ export function fetchRota() {
   };
 }
 
-function fetchRotaComplete(rota) {
+export function saveSchedule(employee) {
+  return {
+    type: SAVE_SCHEDULE,
+    payload: employee
+  };
+}
+
+export function modifySchedule(scheduleIndex, schedule) {
+  return {
+    type: MODIFY_SCHEDULE,
+    payload: { scheduleIndex, schedule }
+  };
+}
+
+function fetchRotaComplete(employees) {
   return {
     type: FETCH_ROTA_COMPLETE,
-    payload: rota
+    payload: employees
+  };
+}
+
+export function showPeriodSelector(employee, scheduleIndex) {
+  return {
+    type: SHOW_PERIOD_SELECTOR,
+    payload: { employee, scheduleIndex }
+  };
+}
+
+export function hidePeriodSelector() {
+  return {
+    type: HIDE_PERIOD_SELECTOR
   };
 }
