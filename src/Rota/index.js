@@ -7,6 +7,7 @@ import "./index.css";
 
 import {
   fetchRota,
+  editSchedule,
   showEditScheduleModal,
   hideEditScheduleModal
 } from "./actions";
@@ -46,7 +47,7 @@ class Rota extends PureComponent {
         )}
         <div className="Rota">
           <div className="Controls">
-            <Button small success disabled={true}>
+            <Button small success disabled={!this.props.hasMadeChanges}>
               Save
             </Button>
           </div>
@@ -103,11 +104,14 @@ class Rota extends PureComponent {
 export default connect(
   state => ({
     rota: state.rota.rota,
+    hasMadeChanges: state.rota.hasMadeChanges,
     scheduleToEdit: state.rota.scheduleToEdit,
     isEditScheduleModalVisible: state.rota.isEditScheduleModalVisible
   }),
   dispatch => ({
     fetchRota: () => dispatch(fetchRota()),
+    editSchedule: ({ rotaId, scheduleEntry }) =>
+      dispatch(editSchedule(rotaId, scheduleEntry)),
     showEditScheduleModal: (rotaId, name, scheduleEntry) =>
       dispatch(showEditScheduleModal(rotaId, name, scheduleEntry)),
     hideEditScheduleModal: () => dispatch(hideEditScheduleModal())

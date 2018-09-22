@@ -38,7 +38,14 @@ export class EditScheduleModal extends Component {
           </span>
         </ModalHeader>
         <ModalContent>
-          <Form onSubmit={() => onSubmit()}>
+          <Form
+            onSubmit={() =>
+              onSubmit({
+                ...schedule,
+                scheduleEntry: { ...schedule.scheduleEntry, am, pm }
+              })
+            }
+          >
             <div className="FormFieldSetsWrapper">
               <EditPeriodForm
                 legend="Morning"
@@ -69,13 +76,13 @@ function EditPeriodForm({ legend, period, onChange }) {
         name="Start"
         type="text"
         value={period.start || ""}
-        onChange={e => onChange({ start: e.target.value, end: period.end })}
+        onChange={e => onChange({ start: +e.target.value, end: period.end })}
       />
       <FormRecord
         name="End"
         type="text"
         value={period.end || ""}
-        onChange={e => onChange({ start: period.start, end: e.target.value })}
+        onChange={e => onChange({ start: period.start, end: +e.target.value })}
       />
     </FormFieldSet>
   );
