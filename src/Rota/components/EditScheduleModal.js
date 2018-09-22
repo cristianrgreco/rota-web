@@ -33,9 +33,9 @@ export class EditScheduleModal extends Component {
         <ModalHeader onClose={onClose}>
           <span>Edit Schedule</span>
           <span> - </span>
-          <span>
-            {schedule.name} {schedule.scheduleEntry.date.format("ddd DD/MM")}
-          </span>
+          <span>{schedule.name}</span>
+          <span> </span>
+          <span>{schedule.scheduleEntry.date.format("ddd DD/MM")}</span>
         </ModalHeader>
         <ModalContent>
           <Form
