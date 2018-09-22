@@ -2,7 +2,8 @@ import {
   FETCH_EMPLOYEES_COMPLETE,
   SAVE_NEW_EMPLOYEE_COMPLETE,
   SHOW_NEW_EMPLOYEE_MODAL,
-  HIDE_NEW_EMPLOYEE_MODAL
+  HIDE_NEW_EMPLOYEE_MODAL,
+  DELETE_EMPLOYEE_COMPLETE
 } from "./constants";
 
 export function fetchEmployees() {
@@ -47,5 +48,18 @@ export function showNewEmployeeModal() {
 export function hideNewEmployeeModal() {
   return {
     type: HIDE_NEW_EMPLOYEE_MODAL
+  };
+}
+
+export function deleteEmployee(employeeId) {
+  return async dispatch => {
+    dispatch(deleteEmployeeComplete(employeeId));
+  };
+}
+
+function deleteEmployeeComplete(employeeId) {
+  return {
+    type: DELETE_EMPLOYEE_COMPLETE,
+    payload: employeeId
   };
 }

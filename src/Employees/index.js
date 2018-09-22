@@ -8,7 +8,8 @@ import {
   fetchEmployees,
   saveNewEmployee,
   showNewEmployeeModal,
-  hideNewEmployeeModal
+  hideNewEmployeeModal,
+  deleteEmployee
 } from "./actions";
 
 class Employees extends PureComponent {
@@ -46,7 +47,12 @@ class Employees extends PureComponent {
               <div className="EmployeeCell centered">
                 <Button info>Edit</Button>
                 <div className="ButtonSeparator" />
-                <Button danger>Delete</Button>
+                <Button
+                  danger
+                  onClick={() => this.props.deleteEmployee(employee.id)}
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           ))}
@@ -65,6 +71,7 @@ export default connect(
     fetchEmployees: () => dispatch(fetchEmployees()),
     saveNewEmployee: employee => dispatch(saveNewEmployee(employee)),
     showNewEmployeeModal: () => dispatch(showNewEmployeeModal()),
-    hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal())
+    hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal()),
+    deleteEmployee: employeeId => dispatch(deleteEmployee(employeeId))
   })
 )(Employees);
