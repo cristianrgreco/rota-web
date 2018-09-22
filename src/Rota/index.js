@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { EditScheduleModal } from "./components";
 import { Button, Table, Row, Cell } from "../components";
+import { calculateTotalRotaEntryHours } from "./calculator";
 import { formatSchedulePeriod } from "./formatter";
 import { getWeek } from "./week";
 import "./index.css";
@@ -17,14 +18,6 @@ import {
 class Rota extends PureComponent {
   componentDidMount() {
     this.props.fetchRota();
-  }
-
-  calculateTotalHours(rotaEntry) {
-    return rotaEntry.schedule.reduce((totalHours, { am, pm }) => {
-      const amHours = (am.end || 0) - (am.start || 0);
-      const pmHours = (pm.end || 0) - (pm.start || 0);
-      return totalHours + (amHours + pmHours);
-    }, 0);
   }
 
   render() {
@@ -94,7 +87,7 @@ class Rota extends PureComponent {
                     </div>
                   </Cell>
                 ))}
-                <Cell centered>{this.calculateTotalHours(rotaEntry)}</Cell>
+                <Cell centered>{calculateTotalRotaEntryHours(rotaEntry)}</Cell>
               </Row>
             ))}
           </Table>
