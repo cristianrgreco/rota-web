@@ -1,18 +1,16 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { NavItem, NavItemLink } from "./components";
 import "./index.css";
 
 export default function Nav() {
   return (
-    <Fragment>
-      <nav className="Nav">
-        <NavItem>
-          <NavItemLink to="/rota">Rota</NavItemLink>
-        </NavItem>
-        <NavItem>
-          <NavItemLink to="/employees">Employees</NavItemLink>
-        </NavItem>
-      </nav>
-    </Fragment>
+    <nav className="Nav">
+      <NavItem>
+        <NavItemLink to="/rota">Rota</NavItemLink>
+      </NavItem>
+      <NavItem>
+        <NavItemLink to="/employees">Employees</NavItemLink>
+      </NavItem>
+    </nav>
   );
 }
