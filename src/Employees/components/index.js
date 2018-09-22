@@ -1,2 +1,2 @@
 export * from "./EditEmployeeModal";
-export * from "./NewEmployeeModal";
+export * from "./AddEmployeeModal";

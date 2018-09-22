@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { Table, Row, Cell, Button } from "../components";
-import { EditEmployeeModal, NewEmployeeModal } from "./components";
+import { AddEmployeeModal, EditEmployeeModal } from "./components";
 import "./index.css";
 
 import {
@@ -24,7 +24,7 @@ class Employees extends PureComponent {
     return (
       <Fragment>
         {this.props.isAddEmployeeModalVisible && (
-          <NewEmployeeModal
+          <AddEmployeeModal
             onSubmit={employee => {
               this.props.addEmployee(employee);
               this.props.hideAddEmployeeModal();

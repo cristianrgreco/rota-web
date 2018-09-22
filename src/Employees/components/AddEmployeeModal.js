@@ -10,7 +10,7 @@ import {
   FormControls
 } from "../../components";
 
-export class NewEmployeeModal extends Component {
+export class AddEmployeeModal extends Component {
   state = {
     name: "",
     phone: ""
