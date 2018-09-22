@@ -19,6 +19,14 @@ class Rota extends PureComponent {
     this.props.fetchRota();
   }
 
+  calculateTotalHours(rotaEntry) {
+    return rotaEntry.schedule.reduce((totalHours, { am, pm }) => {
+      const amHours = (am.end || 0) - (am.start || 0);
+      const pmHours = (pm.end || 0) - (pm.start || 0);
+      return totalHours + (amHours + pmHours);
+    }, 0);
+  }
+
   render() {
     const today = new Date(2018, 7, 18);
     const week = getWeek(today);
@@ -86,7 +94,7 @@ class Rota extends PureComponent {
                     </div>
                   </Cell>
                 ))}
-                <Cell />
+                <Cell centered>{this.calculateTotalHours(rotaEntry)}</Cell>
               </Row>
             ))}
           </Table>
