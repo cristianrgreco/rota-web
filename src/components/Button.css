@@ -12,15 +12,15 @@
 
 .Button.success {
   color: #fff;
-  background-color: #247f0c;
+  background-color: #28a745;
 }
 
 .Button.info {
   color: #fff;
-  background-color: #1e7da5;
+  background-color: #117a8b;
 }
 
 .Button.danger {
   color: #fff;
-  background-color: #b20000;
+  background-color: #dc3545;
 }
