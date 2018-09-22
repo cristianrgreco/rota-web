@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { Button } from "../components";
-import { NewEmployeeModal } from "./components";
+import { EditEmployeeModal, NewEmployeeModal } from "./components";
 import "./index.css";
 
 import {
@@ -9,6 +9,9 @@ import {
   saveNewEmployee,
   showNewEmployeeModal,
   hideNewEmployeeModal,
+  editEmployee,
+  showEditEmployeeModal,
+  hideEditEmployeeModal,
   deleteEmployee
 } from "./actions";
 
@@ -29,6 +32,16 @@ class Employees extends PureComponent {
             onClose={this.props.hideNewEmployeeModal}
           />
         )}
+        {this.props.isEditEmployeeModalVisible && (
+          <EditEmployeeModal
+            employee={this.props.employeeToEdit}
+            onSubmit={employee => {
+              this.props.editEmployee(employee);
+              this.props.hideEditEmployeeModal();
+            }}
+            onClose={this.props.hideEditEmployeeModal}
+          />
+        )}
         <div className="Controls">
           <Button success onClick={this.props.showNewEmployeeModal}>
             Add
@@ -45,7 +58,12 @@ class Employees extends PureComponent {
               <div className="EmployeeCell">{employee.name}</div>
               <div className="EmployeeCell">{employee.phone}</div>
               <div className="EmployeeCell centered">
-                <Button info>Edit</Button>
+                <Button
+                  info
+                  onClick={() => this.props.showEditEmployeeModal(employee)}
+                >
+                  Edit
+                </Button>
                 <div className="ButtonSeparator" />
                 <Button
                   danger
@@ -65,13 +83,19 @@ class Employees extends PureComponent {
 export default connect(
   state => ({
     employees: state.employees.employees,
-    isNewEmployeeModalVisible: state.employees.isNewEmployeeModalVisible
+    employeeToEdit: state.employees.employeeToEdit,
+    isNewEmployeeModalVisible: state.employees.isNewEmployeeModalVisible,
+    isEditEmployeeModalVisible: state.employees.isEditEmployeeModalVisible
   }),
   dispatch => ({
     fetchEmployees: () => dispatch(fetchEmployees()),
     saveNewEmployee: employee => dispatch(saveNewEmployee(employee)),
     showNewEmployeeModal: () => dispatch(showNewEmployeeModal()),
     hideNewEmployeeModal: () => dispatch(hideNewEmployeeModal()),
+    editEmployee: employee => dispatch(editEmployee(employee)),
+    showEditEmployeeModal: employee =>
+      dispatch(showEditEmployeeModal(employee)),
+    hideEditEmployeeModal: () => dispatch(hideEditEmployeeModal()),
     deleteEmployee: employeeId => dispatch(deleteEmployee(employeeId))
   })
 )(Employees);

@@ -3,6 +3,9 @@ import {
   SAVE_NEW_EMPLOYEE_COMPLETE,
   SHOW_NEW_EMPLOYEE_MODAL,
   HIDE_NEW_EMPLOYEE_MODAL,
+  EDIT_EMPLOYEE_COMPLETE,
+  SHOW_EDIT_EMPLOYEE_MODAL,
+  HIDE_EDIT_EMPLOYEE_MODAL,
   DELETE_EMPLOYEE_COMPLETE
 } from "./constants";
 
@@ -48,6 +51,32 @@ export function showNewEmployeeModal() {
 export function hideNewEmployeeModal() {
   return {
     type: HIDE_NEW_EMPLOYEE_MODAL
+  };
+}
+
+export function editEmployee(employee) {
+  return async dispatch => {
+    dispatch(editEmployeeComplete(employee));
+  };
+}
+
+function editEmployeeComplete(employee) {
+  return {
+    type: EDIT_EMPLOYEE_COMPLETE,
+    payload: employee
+  };
+}
+
+export function showEditEmployeeModal(employee) {
+  return {
+    type: SHOW_EDIT_EMPLOYEE_MODAL,
+    payload: employee
+  };
+}
+
+export function hideEditEmployeeModal() {
+  return {
+    type: HIDE_EDIT_EMPLOYEE_MODAL
   };
 }
 
