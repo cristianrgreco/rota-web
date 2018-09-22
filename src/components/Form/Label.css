@@ -1,6 +1,7 @@
 .Label {
   display: flex;
   flex-basis: 5rem;
+  justify-content: flex-end;
   text-transform: uppercase;
   margin-right: 1rem;
 }
