@@ -3,19 +3,3 @@
   align-items: center;
   margin-bottom: 1rem;
 }
-
-.Label {
-  display: flex;
-  flex-basis: 5rem;
-  text-transform: uppercase;
-  margin-right: 1rem;
-}
-
-.Input {
-  height: 2rem;
-  box-sizing: border-box;
-  padding: .5rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: .2rem;
-  text-transform: uppercase;
-}

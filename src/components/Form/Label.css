@@ -1,0 +1,6 @@
+.Label {
+  display: flex;
+  flex-basis: 5rem;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
