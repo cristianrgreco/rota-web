@@ -13,12 +13,12 @@ import {
 export class EditScheduleModal extends Component {
   state = {
     am: {
-      start: (this.props.schedule.scheduleEntry.am || {}).start,
-      end: (this.props.schedule.scheduleEntry.am || {}).end
+      start: this.props.schedule.scheduleEntry.am.start,
+      end: this.props.schedule.scheduleEntry.am.end
     },
     pm: {
-      start: (this.props.schedule.scheduleEntry.pm || {}).start,
-      end: (this.props.schedule.scheduleEntry.pm || {}).end
+      start: this.props.schedule.scheduleEntry.pm.start,
+      end: this.props.schedule.scheduleEntry.pm.start
     }
   };
 

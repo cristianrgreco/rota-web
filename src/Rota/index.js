@@ -21,7 +21,7 @@ class Rota extends PureComponent {
   }
 
   formatScheduleEntryPeriod(period) {
-    if (!period) {
+    if (!period.start || !period.end) {
       return "";
     } else {
       return `${this.formatTime(period.start)}-${this.formatTime(period.end)}`;

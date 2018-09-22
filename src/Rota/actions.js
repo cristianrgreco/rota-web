@@ -13,13 +13,41 @@ export function fetchRota() {
         id: 1,
         name: "Adam",
         schedule: [
-          { date: moment(new Date(2018, 7, 13)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 14)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 16)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 17)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 18)), am: null, pm: null },
-          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
+          {
+            date: moment(new Date(2018, 7, 13)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 14)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 15)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 16)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 17)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 18)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
+          {
+            date: moment(new Date(2018, 7, 19)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          }
         ]
       },
       {
@@ -29,30 +57,38 @@ export function fetchRota() {
           {
             date: moment(new Date(2018, 7, 13)),
             am: { start: 8, end: 16 },
-            pm: null
+            pm: { start: null, end: null }
           },
           {
             date: moment(new Date(2018, 7, 14)),
             am: { start: 8, end: 16 },
-            pm: null
+            pm: { start: null, end: null }
           },
-          { date: moment(new Date(2018, 7, 15)), am: null, pm: null },
+          {
+            date: moment(new Date(2018, 7, 15)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          },
           {
             date: moment(new Date(2018, 7, 16)),
-            am: null,
+            am: { start: null, end: null },
             pm: { start: 16, end: 23 }
           },
           {
             date: moment(new Date(2018, 7, 17)),
-            am: null,
+            am: { start: null, end: null },
             pm: { start: 16, end: 23 }
           },
           {
             date: moment(new Date(2018, 7, 18)),
-            am: null,
+            am: { start: null, end: null },
             pm: { start: 16, end: 23 }
           },
-          { date: moment(new Date(2018, 7, 19)), am: null, pm: null }
+          {
+            date: moment(new Date(2018, 7, 19)),
+            am: { start: null, end: null },
+            pm: { start: null, end: null }
+          }
         ]
       }
     ]);
