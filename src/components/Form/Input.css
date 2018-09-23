@@ -10,6 +10,10 @@
   text-transform: uppercase;
 }
 
+.Input:invalid {
+  border: 1px solid #dc3545;
+}
+
 .Input::placeholder {
   opacity: .2;
 }

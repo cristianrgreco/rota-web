@@ -51,10 +51,11 @@ export class EditScheduleModal extends Component {
                 legend="Morning"
                 period={am}
                 boundary={{
-                  start: { min: 0, max: am.end - 1 },
-                  end: { min: am.start + 1, max: pm.start }
+                  start: { min: 0, max: (am.end || 24) - 1 },
+                  end: { min: (am.start || 0) + 1, max: pm.start || 24 }
                 }}
                 placeholder={{ start: 8, end: 16 }}
+                required={{ start: am.end !== null, end: am.start !== null }}
                 onChange={am => this.setState({ am })}
               />
               <div className="PeriodFormSeparator" />
@@ -62,10 +63,11 @@ export class EditScheduleModal extends Component {
                 legend="Afternoon"
                 period={pm}
                 boundary={{
-                  start: { min: am.end, max: pm.end - 1 },
-                  end: { min: pm.start + 1, max: 24 }
+                  start: { min: am.end || 0, max: (pm.end || 24) - 1 },
+                  end: { min: (pm.start || 0) + 1, max: 24 }
                 }}
                 placeholder={{ start: 16, end: 23 }}
+                required={{ start: pm.end !== null, end: pm.start !== null }}
                 onChange={pm => this.setState({ pm })}
               />
             </div>
@@ -79,7 +81,14 @@ export class EditScheduleModal extends Component {
   }
 }
 
-function EditPeriodForm({ legend, period, boundary, placeholder, onChange }) {
+function EditPeriodForm({
+  legend,
+  period,
+  boundary,
+  required,
+  placeholder,
+  onChange
+}) {
   return (
     <FormFieldSet legend={legend}>
       <FormRecord
@@ -87,6 +96,7 @@ function EditPeriodForm({ legend, period, boundary, placeholder, onChange }) {
         type="number"
         value={period.start || ""}
         placeholder={placeholder.start}
+        required={required.start}
         min={boundary.start.min}
         max={boundary.start.max}
         onChange={e => onChange({ start: +e.target.value, end: period.end })}
@@ -96,6 +106,7 @@ function EditPeriodForm({ legend, period, boundary, placeholder, onChange }) {
         type="number"
         value={period.end || ""}
         placeholder={placeholder.end}
+        required={required.end}
         min={boundary.end.min}
         max={boundary.end.max}
         onChange={e => onChange({ start: period.start, end: +e.target.value })}

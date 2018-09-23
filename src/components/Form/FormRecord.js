@@ -7,6 +7,7 @@ export function FormRecord({
   type,
   value,
   placeholder,
+  required,
   min,
   max,
   onChange
@@ -19,6 +20,7 @@ export function FormRecord({
         type={type}
         value={value}
         placeholder={placeholder}
+        required={required}
         min={min}
         max={max}
         onChange={onChange}

@@ -1,0 +1,4 @@
+.Form:invalid .Button[type=submit] {
+  pointer-events: none;
+  opacity: .65;
+}

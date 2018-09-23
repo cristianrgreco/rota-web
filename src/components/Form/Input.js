@@ -1,7 +1,16 @@
 import React from "react";
 import "./Input.css";
 
-export function Input({ name, type, value, min, max, placeholder, onChange }) {
+export function Input({
+  name,
+  type,
+  value,
+  placeholder,
+  required,
+  min,
+  max,
+  onChange
+}) {
   return (
     <input
       className="Input"
@@ -9,6 +18,7 @@ export function Input({ name, type, value, min, max, placeholder, onChange }) {
       type={type}
       value={value}
       placeholder={placeholder}
+      required={required}
       min={min}
       max={max}
       onChange={onChange}
