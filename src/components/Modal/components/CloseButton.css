@@ -1,9 +1,13 @@
 .ModalHeaderButton {
+  cursor: pointer;
   display: flex;
   box-sizing: border-box;
-  padding: .1rem;
 }
 
 .ModalHeaderButton.danger {
-  color: #b20000;
+  color: #dc3545;
+}
+
+.ModalHeaderButton.danger:hover {
+  color: #c82333;
 }

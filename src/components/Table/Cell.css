@@ -24,3 +24,7 @@
 .Cell.centered {
   justify-content: center;
 }
+
+.Cell.hasClick {
+  cursor: pointer;
+}

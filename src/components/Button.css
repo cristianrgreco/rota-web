@@ -1,4 +1,5 @@
 .Button {
+  cursor: pointer;
   display: flex;
   height: 3rem;
   flex-basis: 5rem;
@@ -10,6 +11,7 @@
 }
 
 .Button[disabled] {
+  cursor: not-allowed;
   opacity: .65;
 }
 
@@ -23,12 +25,24 @@
   background-color: #28a745;
 }
 
+.Button.success:not([disabled]):hover {
+  background-color: #218838;
+}
+
 .Button.info {
   color: #fff;
+  background-color: #138496;
+}
+
+.Button.info:not([disabled]):hover {
   background-color: #117a8b;
 }
 
 .Button.danger {
   color: #fff;
   background-color: #dc3545;
+}
+
+.Button.danger:not([disabled]):hover {
+  background-color: #c82333;
 }
