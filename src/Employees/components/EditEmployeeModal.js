@@ -29,12 +29,14 @@ export class EditEmployeeModal extends Component {
               name="Name"
               type="text"
               value={name}
+              required={true}
               onChange={e => this.setState({ name: e.target.value })}
             />
             <FormRecord
               name="Phone"
               type="text"
               value={phone}
+              required={true}
               onChange={e => this.setState({ phone: e.target.value })}
             />
             <FormControls>
