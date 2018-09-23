@@ -74,14 +74,18 @@ function EditPeriodForm({ legend, period, onChange }) {
     <FormFieldSet legend={legend}>
       <FormRecord
         name="Start"
-        type="text"
+        type="number"
         value={period.start || ""}
+        min={0}
+        max={24}
         onChange={e => onChange({ start: +e.target.value, end: period.end })}
       />
       <FormRecord
         name="End"
-        type="text"
+        type="number"
         value={period.end || ""}
+        min={0}
+        max={24}
         onChange={e => onChange({ start: period.start, end: +e.target.value })}
       />
     </FormFieldSet>
