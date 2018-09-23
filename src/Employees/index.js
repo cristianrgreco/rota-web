@@ -22,29 +22,43 @@ class Employees extends PureComponent {
   }
 
   render() {
+    const {
+      employees,
+      isAddEmployeeModalVisible,
+      addEmployee,
+      showAddEmployeeModal,
+      hideAddEmployeeModal,
+      isEditEmployeeModalVisible,
+      editEmployee,
+      employeeToEdit,
+      showEditEmployeeModal,
+      hideEditEmployeeModal,
+      deleteEmployee
+    } = this.props;
+
     return (
       <Fragment>
-        {this.props.isAddEmployeeModalVisible && (
+        {isAddEmployeeModalVisible && (
           <AddEmployeeModal
             onSubmit={employee => {
-              this.props.addEmployee(employee);
-              this.props.hideAddEmployeeModal();
+              addEmployee(employee);
+              hideAddEmployeeModal();
             }}
-            onClose={this.props.hideAddEmployeeModal}
+            onClose={hideAddEmployeeModal}
           />
         )}
-        {this.props.isEditEmployeeModalVisible && (
+        {isEditEmployeeModalVisible && (
           <EditEmployeeModal
-            employee={this.props.employeeToEdit}
+            employee={employeeToEdit}
             onSubmit={employee => {
-              this.props.editEmployee(employee);
-              this.props.hideEditEmployeeModal();
+              editEmployee(employee);
+              hideEditEmployeeModal();
             }}
-            onClose={this.props.hideEditEmployeeModal}
+            onClose={hideEditEmployeeModal}
           />
         )}
         <div className="Controls">
-          <Button small success onClick={this.props.showAddEmployeeModal}>
+          <Button small success onClick={showAddEmployeeModal}>
             Add
           </Button>
         </div>
@@ -54,7 +68,7 @@ class Employees extends PureComponent {
             <Cell>Phone</Cell>
             <Cell />
           </Row>
-          {this.props.employees.map((employee, i) => (
+          {employees.map((employee, i) => (
             <Row key={i}>
               <Cell>{employee.name}</Cell>
               <Cell>{formatPhone(employee.phone)}</Cell>
@@ -62,7 +76,7 @@ class Employees extends PureComponent {
                 <Button
                   small
                   info
-                  onClick={() => this.props.showEditEmployeeModal(employee)}
+                  onClick={() => showEditEmployeeModal(employee)}
                 >
                   Edit
                 </Button>
@@ -70,7 +84,7 @@ class Employees extends PureComponent {
                 <Button
                   small
                   danger
-                  onClick={() => this.props.deleteEmployee(employee.id)}
+                  onClick={() => deleteEmployee(employee.id)}
                 >
                   Delete
                 </Button>

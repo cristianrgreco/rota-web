@@ -21,29 +21,35 @@ class Rota extends PureComponent {
   }
 
   render() {
+    const {
+      rota,
+      isEditScheduleModalVisible,
+      editSchedule,
+      scheduleToEdit,
+      showEditScheduleModal,
+      hideEditScheduleModal,
+      hasMadeChanges,
+      saveRota
+    } = this.props;
+
     const today = new Date(2018, 7, 18);
     const week = getWeek(today);
 
     return (
       <Fragment>
-        {this.props.isEditScheduleModalVisible && (
+        {isEditScheduleModalVisible && (
           <EditScheduleModal
-            schedule={this.props.scheduleToEdit}
+            schedule={scheduleToEdit}
             onSubmit={schedule => {
-              this.props.editSchedule(schedule);
-              this.props.hideEditScheduleModal();
+              editSchedule(schedule);
+              hideEditScheduleModal();
             }}
-            onClose={this.props.hideEditScheduleModal}
+            onClose={hideEditScheduleModal}
           />
         )}
         <div className="Rota">
           <div className="Controls">
-            <Button
-              small
-              success
-              disabled={!this.props.hasMadeChanges}
-              onClick={this.props.saveRota}
-            >
+            <Button small success disabled={!hasMadeChanges} onClick={saveRota}>
               Save
             </Button>
           </div>
@@ -58,7 +64,7 @@ class Rota extends PureComponent {
               ))}
               <Cell />
             </Row>
-            {this.props.rota.map((rotaEntry, i) => (
+            {rota.map((rotaEntry, i) => (
               <Row key={i}>
                 <Cell header centered>
                   {rotaEntry.name}
@@ -69,7 +75,7 @@ class Rota extends PureComponent {
                     wide
                     centered
                     onClick={() =>
-                      this.props.showEditScheduleModal(
+                      showEditScheduleModal(
                         rotaEntry.id,
                         rotaEntry.name,
                         scheduleEntry
