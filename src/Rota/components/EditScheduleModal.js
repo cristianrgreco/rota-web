@@ -50,12 +50,22 @@ export class EditScheduleModal extends Component {
               <EditPeriodForm
                 legend="Morning"
                 period={am}
+                boundary={{
+                  start: { min: 0, max: am.end - 1 },
+                  end: { min: am.start + 1, max: pm.start }
+                }}
+                placeholder={{ start: 8, end: 16 }}
                 onChange={am => this.setState({ am })}
               />
               <div className="PeriodFormSeparator" />
               <EditPeriodForm
                 legend="Afternoon"
                 period={pm}
+                boundary={{
+                  start: { min: am.end, max: pm.end - 1 },
+                  end: { min: pm.start + 1, max: 24 }
+                }}
+                placeholder={{ start: 16, end: 23 }}
                 onChange={pm => this.setState({ pm })}
               />
             </div>
@@ -69,23 +79,25 @@ export class EditScheduleModal extends Component {
   }
 }
 
-function EditPeriodForm({ legend, period, onChange }) {
+function EditPeriodForm({ legend, period, boundary, placeholder, onChange }) {
   return (
     <FormFieldSet legend={legend}>
       <FormRecord
         name="Start"
         type="number"
         value={period.start || ""}
-        min={0}
-        max={24}
+        placeholder={placeholder.start}
+        min={boundary.start.min}
+        max={boundary.start.max}
         onChange={e => onChange({ start: +e.target.value, end: period.end })}
       />
       <FormRecord
         name="End"
         type="number"
         value={period.end || ""}
-        min={0}
-        max={24}
+        placeholder={placeholder.end}
+        min={boundary.end.min}
+        max={boundary.end.max}
         onChange={e => onChange({ start: period.start, end: +e.target.value })}
       />
     </FormFieldSet>

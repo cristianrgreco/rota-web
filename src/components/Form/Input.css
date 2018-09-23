@@ -1,10 +1,15 @@
 .Input {
   display: flex;
+  flex-shrink: 0;
   width: 10rem;
-  box-sizing: border-box;
   height: 3rem;
+  box-sizing: border-box;
   padding: 0 1rem;
   border: 1px solid #ddd;
   border-radius: .2rem;
   text-transform: uppercase;
+}
+
+.Input::placeholder {
+  opacity: .2;
 }
