@@ -10,6 +10,10 @@
   text-transform: uppercase;
 }
 
+.Input:focus {
+  outline: 0;
+}
+
 .Input:invalid {
   border: 1px solid #dc3545;
 }

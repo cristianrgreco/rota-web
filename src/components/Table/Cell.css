@@ -28,3 +28,7 @@
 .Cell.hasClick {
   cursor: pointer;
 }
+
+.Cell.hasClick:hover {
+  background-color: #fafafa;
+}

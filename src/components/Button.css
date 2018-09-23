@@ -10,8 +10,13 @@
   text-transform: uppercase;
 }
 
+.Button:focus {
+  outline: 0;
+}
+
 .Button[disabled] {
   opacity: .65;
+  cursor: default;
 }
 
 .Button.small {
