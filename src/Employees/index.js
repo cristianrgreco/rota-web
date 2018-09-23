@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { Table, Row, Cell, Button } from "../components";
 import { AddEmployeeModal, EditEmployeeModal } from "./components";
+import { formatPhone } from "./formatter";
 import "./index.css";
 
 import {
@@ -56,7 +57,7 @@ class Employees extends PureComponent {
           {this.props.employees.map((employee, i) => (
             <Row key={i}>
               <Cell>{employee.name}</Cell>
-              <Cell>{employee.phone}</Cell>
+              <Cell>{formatPhone(employee.phone)}</Cell>
               <Cell centered>
                 <Button
                   small
