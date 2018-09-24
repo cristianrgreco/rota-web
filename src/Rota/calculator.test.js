@@ -1,4 +1,4 @@
-import { calculateTotalRotaEntryHours } from "../calculator";
+import { calculateTotalRotaEntryHours } from "./calculator";
 
 describe("calculator", () => {
   it("should return the total hours in a rota entry", () => {
