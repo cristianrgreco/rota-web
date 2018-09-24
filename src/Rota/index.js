@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
 import { EditScheduleModal } from "./components";
-import { Button, Table, Row, Cell } from "../components";
+import { Button, Table, Row, Cell, CellSplit } from "../components";
 import { calculateTotalRotaEntryHours } from "./calculator";
 import { formatSchedulePeriod } from "./formatter";
 import { getWeek } from "./week";
@@ -82,15 +82,10 @@ class Rota extends PureComponent {
                       )
                     }
                   >
-                    <div className="CellSplit">
-                      <span className="CellSplitItem">
-                        {formatSchedulePeriod(scheduleEntry.am)}
-                      </span>
-                      <span className="CellSplitItem separator" />
-                      <span className="CellSplitItem">
-                        {formatSchedulePeriod(scheduleEntry.pm)}
-                      </span>
-                    </div>
+                    <CellSplit>
+                      {formatSchedulePeriod(scheduleEntry.am)}
+                      {formatSchedulePeriod(scheduleEntry.pm)}
+                    </CellSplit>
                   </Cell>
                 ))}
                 <Cell header centered>

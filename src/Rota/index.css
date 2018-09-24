@@ -9,23 +9,3 @@
   box-sizing: border-box;
   padding: 0 .5rem;
 }
-
-.CellSplit {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
-.CellSplitItem {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
-.CellSplitItem.separator::after {
-  content: ' ';
-  display: block;
-  height: 100%;
-  width: 1px;
-  background-color: #ddd;
-}

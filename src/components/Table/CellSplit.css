@@ -1,0 +1,20 @@
+.CellSplit {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.CellSplitItem,
+.CellSplitSeparator {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.CellSplitSeparator::after {
+  content: ' ';
+  display: block;
+  height: 100%;
+  width: 1px;
+  background-color: #ddd;
+}
